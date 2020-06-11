@@ -16,19 +16,19 @@
 ## 2 Git Commands
 
 - git init
- - Tao repo trong may
+ -Tao repo trong may
 - git clone
- - Lay tu tren mang ve
+ -Lay tu tren mang ve
 - git pull
- - Dong bo tren mang ve
+ -Dong bo tren mang ve
 -git add / git add .
- - Sua source code
+ -Sua source code
 - git commit
- - Sua source code 
+ -Sua source code 
 - git push
- - Dong bo tu may len mang
+ -Dong bo tu may len mang
 - git log
- - Lay log
+ -Lay log
 
 ## 3 Upload Files
 >git add *Filename
