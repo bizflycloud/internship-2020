@@ -31,14 +31,26 @@
  -Lay log
 
 ## 3 Upload Files
+
+
 >git add *Filename
+
+
 >git push
+
+
 >git commit -m "comment"
+
+
 >git status / git log
 
 ## 4 Create a branch
 >git checkout -b "*name of branch"
+
+
 >git commit -m "comment"
+
+
 >git push
 
 ## 5 Delete a branch
