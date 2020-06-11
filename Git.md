@@ -9,7 +9,9 @@
  > git config --global user.email "email_id"
 
 - Creating a local repository
- > Use the following command : git init Mytest
+ - Use the following command : > git init Mytest
+
+
  > If successfully you will get this noti : Initialized empty Git repository in /home/akshay/Mytest/.git/
 
 
