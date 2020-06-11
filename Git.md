@@ -5,12 +5,12 @@
 - Open Terminal and type in this command: sudo apt-get install git
 
 - Config Github: type in these commands
- - git config --global user.name "user_name"
- - git config --global user.email "email_id"
+ > git config --global user.name "user_name"
+ > git config --global user.email "email_id"
 
 - Creating a local repository
- - Use the following command : git init Mytest
- - If successfully you will get this noti : Initialized empty Git repository in /home/akshay/Mytest/.git/
+ > Use the following command : git init Mytest
+ > If successfully you will get this noti : Initialized empty Git repository in /home/akshay/Mytest/.git/
 
 
 ## 2 Git Commands
