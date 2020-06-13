@@ -59,43 +59,36 @@ Vậy là chúng ta đã tạo được repo trên ubuntu đang sử dụng
 ## 2. Các lệnh Git cơ bản
 
  - Lệnh:
- 
- `git init`
+  `git init`
  
  Như đã biết ở trên thì chúng ta sử dụng lệnh này để tạo 1 repo ở máy đang sử dụng.
 
 - Lệnh: 
-
 `git clone`
  
  Lệnh này sẽ giúp chúng ta copy bất kì repo trên internet về máy tính đang sử dụng 
 
 - Lệnh:
-
 `git pull`
 
  Lệnh này sẽ giúp chúng ta tải xuống 1 repo tại 1 remote về máy tính của mình và update các thông tin trong repo đó.
  
  -Lệnh:
- 
  `git add`
  
  Lệnh này giúp chúng ta lưu thay đổi chúng ta vừa tạo ra vào trạng thái chờ ( stagin arena )
  
 - Lệnh:
-
 `git commit`
 
 Câu lệnh này sẽ giúp chúng ta lưu thay đổi tại local repo ( trên máy tính đang sử dụng)
 
 - Lệnh: 
-
 `git push`
 
 Sau khi lưu thay đổi tại local repo thì câu lệnh này sẽ giúp chúng ta tải những thay đổi tại local repo(trên máy tính) lên remote repo(trên internet)
 
 - Lệnh: 
-
 `git log`
  
 Trong một vài trường hợp muốn xem log của git thì đây chính là lệnh chúng ta cần sử dụng
