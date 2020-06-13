@@ -17,17 +17,20 @@ Git cung cấp cho chúng ta nhiều cách để cài đặt nhưng ở bài nà
 
 Đầu tiên, sử dụng các công cụ quản lý gói apt để cập nhật chỉ mục gói nội bộ của bạn. Với bản cập nhật hoàn tất, bạn có thể tải xuống và cài đặt Git:
 
-> sudo apt update
+```
+sudo apt update
 
-> sudo apt-get install git
+sudo apt-get install git
+```
 
 Sau khi cài đặt git xong chúng ta  sẽ đến với bước tiếp theo đó chính là config ( tinh chỉnh git)
+```
+git config --global user.name "user_name"
 
- > git config --global user.name "user_name"
+git config --global user.email "email_id"
+```
 
- > git config --global user.email "email_id"
-  
- Với username và email_id là username và email trên github.comm
+Với username và email_id là username và email trên github.comm
 
 Tiếp đó chúng ta sẽ đến với bước tạo 1 Repo trong máy
 
@@ -35,7 +38,9 @@ Tiếp đó chúng ta sẽ đến với bước tạo 1 Repo trong máy
  
 - B2: Bật cửa sổ Terminal trên Ubuntu và nhập các lệnh sau
 
-> git init
+```
+git init
+```
 
 Nếu thành công sẽ hiển thị trạng thái ví dụ như: Initialized empty Git repository in /home/.git/
 
@@ -43,7 +48,9 @@ Bước này sẽ tạo trên máy tính của chúng ta 1 reposit
  
 - Sau đó chúng ta sẽ kiếm tra lại xem trên máy đã có 1 repo hay chưa thông qua lệnh:
 
+```
 >git status
+```
 
  - Nếu đã thực hiện được bước 1 sẽ có thông báo như sau : On branch master // No commits yet
 
