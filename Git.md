@@ -49,7 +49,7 @@ Bước này sẽ tạo trên máy tính của chúng ta 1 reposit
 - Sau đó chúng ta sẽ kiếm tra lại xem trên máy đã có 1 repo hay chưa thông qua lệnh:
 
 ```
->git status
+git status
 ```
 
  - Nếu đã thực hiện được bước 1 sẽ có thông báo như sau : On branch master // No commits yet
