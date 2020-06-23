@@ -17,20 +17,17 @@ Git cung cấp cho chúng ta nhiều cách để cài đặt nhưng ở bài nà
 
 Đầu tiên, sử dụng các công cụ quản lý gói apt để cập nhật chỉ mục gói nội bộ của bạn. Với bản cập nhật hoàn tất, bạn có thể tải xuống và cài đặt Git:
 
-```
-sudo apt update
+> sudo apt update
 
-sudo apt-get install git
-```
+> sudo apt-get install git
 
 Sau khi cài đặt git xong chúng ta  sẽ đến với bước tiếp theo đó chính là config ( tinh chỉnh git)
-```
-git config --global user.name "user_name"
 
-git config --global user.email "email_id"
-```
+ > git config --global user.name "user_name"
 
-Với username và email_id là username và email trên github.comm
+ > git config --global user.email "email_id"
+  
+ Với username và email_id là username và email trên github.comm
 
 Tiếp đó chúng ta sẽ đến với bước tạo 1 Repo trong máy
 
@@ -38,9 +35,7 @@ Tiếp đó chúng ta sẽ đến với bước tạo 1 Repo trong máy
  
 - B2: Bật cửa sổ Terminal trên Ubuntu và nhập các lệnh sau
 
-```
-git init
-```
+> git init
 
 Nếu thành công sẽ hiển thị trạng thái ví dụ như: Initialized empty Git repository in /home/.git/
 
@@ -48,9 +43,7 @@ Bước này sẽ tạo trên máy tính của chúng ta 1 reposit
  
 - Sau đó chúng ta sẽ kiếm tra lại xem trên máy đã có 1 repo hay chưa thông qua lệnh:
 
-```
-git status
-```
+>git status
 
  - Nếu đã thực hiện được bước 1 sẽ có thông báo như sau : On branch master // No commits yet
 
@@ -59,36 +52,43 @@ Vậy là chúng ta đã tạo được repo trên ubuntu đang sử dụng
 ## 2. Các lệnh Git cơ bản
 
  - Lệnh:
-  `git init`
+ 
+ `git init`
  
  Như đã biết ở trên thì chúng ta sử dụng lệnh này để tạo 1 repo ở máy đang sử dụng.
 
 - Lệnh: 
+
 `git clone`
  
  Lệnh này sẽ giúp chúng ta copy bất kì repo trên internet về máy tính đang sử dụng 
 
 - Lệnh:
+
 `git pull`
 
  Lệnh này sẽ giúp chúng ta tải xuống 1 repo tại 1 remote về máy tính của mình và update các thông tin trong repo đó.
  
  -Lệnh:
+ 
  `git add`
  
  Lệnh này giúp chúng ta lưu thay đổi chúng ta vừa tạo ra vào trạng thái chờ ( stagin arena )
  
 - Lệnh:
+
 `git commit`
 
 Câu lệnh này sẽ giúp chúng ta lưu thay đổi tại local repo ( trên máy tính đang sử dụng)
 
 - Lệnh: 
+
 `git push`
 
 Sau khi lưu thay đổi tại local repo thì câu lệnh này sẽ giúp chúng ta tải những thay đổi tại local repo(trên máy tính) lên remote repo(trên internet)
 
 - Lệnh: 
+
 `git log`
  
 Trong một vài trường hợp muốn xem log của git thì đây chính là lệnh chúng ta cần sử dụng
