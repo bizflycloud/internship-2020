@@ -69,7 +69,7 @@
 
             - Ở đây thể hiện mọi user thuộc group admin đều có thể thực hiện quy tắc này
 
-            4. `/etc/shadow`
+         4. `/etc/shadow`
 
             - Nơi lưu các thông tin về mật khẩu mã hóa của các user
 
