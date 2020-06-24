@@ -40,7 +40,7 @@
 
     - Nguyên lý: là sự kết hợp của RAID 1 và RAID 0. Yêu cầu 4 ổ cứng. Khi dữ liệu được ghi thì sẽ đc ghi ra 4 ổ với 2 ổ sử dụng Striping( RAID 0)  và 2 ổ sử dụng Mirroring (RAID 1)
     - Ưu điểm 👍: Tốc độ nhanh, an toàn, hiệu suất cao
-    - Nhược điểm : Chi phí cao
+    - Nhược điểm 👎 : Chi phí cao
 
 - Tài liệu tham khảo
 
