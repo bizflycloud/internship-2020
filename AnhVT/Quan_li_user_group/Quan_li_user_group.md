@@ -88,11 +88,14 @@
 
     - So sánh `su` và `sudo`
         - Hành vi mặc định
-            - Ở `sudo` thì cho phép sử dụng lệnh với đặc quyền root và kết thúc ngay sau đso
-            - Còn với `su` sẽ tạo 1 shell mới, user có thể nhập vào bao nhiêu lệnh tùy thích
+            - Ở `sudo` thì cho phép sử dụng lệnh với đặc quyền root và kết thúc ngay sau đó
+            - Còn với `su` chuyển sang user root ( có thể giữ hoặc không giữ môi trường trước khi đăng nhập). Sau khi đăng nhập có thể thực hiện *các* lệnh
         - Ghi Log
             - Với `sudo` tên người sử dụng lệnh có thể trực tiếp theo dõi
             - Còn với `su` thì k thể theo dõi
+        - Khi đăng nhập
+            - Với `sudo` người dùng cần nhập vào password của user hiện  tại
+            - Với `su` hoặc `su - ` người dùng cần nhập bằng password của root 
 - Tài liệu tham khảo
 
     [https://www.howtogeek.com/50787/add-a-user-to-a-group-or-second-group-on-linux/](https://www.howtogeek.com/50787/add-a-user-to-a-group-or-second-group-on-linux/)
