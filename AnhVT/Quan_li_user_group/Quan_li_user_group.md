@@ -79,7 +79,7 @@
 
     ⇒ việc để người dùng biết được password của `root` là vô cùng nguy hiểm với các nguy cơ tấn công khác nhau.
 
-    ⇒ Nguy cơ tấn công ạng 
+    ⇒ Nguy cơ tấn công mạng 
 
     ⇒ Giải quyết bằng cách sử dụng `sudo` 
     2. Khi sử dụng `sudo` người dùng sẽ được yêu cầu nhập vào password của user
