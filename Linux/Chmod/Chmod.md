@@ -12,8 +12,7 @@ Gồm 3 option cơ bản :
 
 Danh sách các mode 
 
-![Selection_008](https://user-images.githubusercontent.com/66721505/85837385-21fd2c80-b7c2-11ea-94c2-1f5c7728c6bc.png)
-
+[Các Mode trong Linux](https://www.notion.so/13408b227d144b42899967734ea88064)
 
 ---
 

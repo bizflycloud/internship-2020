@@ -11,7 +11,7 @@
 
 Vậy chúng ta có thể thấy Git là 1 ứng dụng vô cùng hữu dụng trong việc quản lí dự án hiện nay của các công ty công nghệ . Trong bài viết này mình sẽ hướng dẫn các bạn cách cài đặt và sử dụng git trên hệ điều hành ubuntu 18.04LTS
 
-## 1. Cài đạt Git như thé nào ?
+## 1. Cài đặt Git như thé nào ?
 
 Git cung cấp cho chúng ta nhiều cách để cài đặt nhưng ở bài này mình sẽ hướng dẫn các bài cài đặt git thông qua cửa sổ Terminal quen thuộc.
 
@@ -132,4 +132,21 @@ Tại máy tính của mình nếu bạn muốn xóa 1 nhánh thì có thể s�
 - Còn đối với remote repo thì có thể sử dụng lệnh sau để xóa 1 branch:
 
 `git push origin --delete *branch_name`
+
+## 6. Đổi tên 1 folder 
+
+Sử dụng: 
+
+`git mv old new` với old new là tên file trc và sau khi sửa
+
+Sau đó sử dụng `git add -u new` ( bởi vì đây là file đã được tracked rồi nên ta sử dụng option -u để update)
+
+Tiếp đó `git commit -m "new"`
+
+Trong trường hợp có sự thay đổi về chữ viết hoa trong tên file:
+
+`git mv foldername tempname && git mv tempname folderName`
+
+( sử dụng tempname như 1 tên trung gian )
+
 
