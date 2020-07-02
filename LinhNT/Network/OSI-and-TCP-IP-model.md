@@ -44,3 +44,7 @@ Data Link layer chia nhỏ thành 2 sublayers:
 - [MAC layer](https://congngheviet.com/dia-chi-ip-va-dia-chi-mac-la-gi-chung-dung-de-lam-gi/) : điều khiển cách thiết bị truy cập vào cáp mạng 
 - [LLCL-Logical-link-control-layer](https://searchnetworking.techtarget.com/definition/Logical-Link-Control-layer) : quản lí lưu lượng trên kết nối vật lí (đóng gói dữ liệu tới frame và cho phép phát hiện lỗi)
 
+## References
+[TCP-IP](https://www.guru99.com/tcp-ip-model.html)
+
+[OSI](https://www.guru99.com/layers-of-osi-model.html)
