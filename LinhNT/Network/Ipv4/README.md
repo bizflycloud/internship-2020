@@ -13,7 +13,11 @@ Có **2 kiểu transmissions** tại network layer:
 ___
 ![](https://advancedinternettechnologies.files.wordpress.com/2012/01/ipv4-header.png?w=584)
 
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Network/Ipv4/Images/1.jpg)
 
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Network/Ipv4/Images/2.jpg)
+
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Network/Ipv4/Images/3.jpg)
 
 ## References 
 [IPv4-Header](https://www.geeksforgeeks.org/introduction-and-ipv4-datagram-header/)
