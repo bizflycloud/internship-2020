@@ -31,4 +31,17 @@ VLAN tổ chức trên nhiều switch như vậy, làm sao để các thiết b�
 ###### Cách 2: Sử dụng trunk
 > **Trunk** : là kết nối point-to-point giữa router với switch và switch với switch, và cho phép ***vận chuyển data của nhiều VLAN thông qua 1 liên kết đơn***. Giao thức được sử dụng: **802.11Q**.
 
+> `Trunk` giúp các gói tin thuộc nhiều VLAN khác nhau đi qua **trunk link** này. Gói tin đi từ switch này tới switch khác hoặc switch tới router được tag **vlanID** chỉ định, còn các gói tin đi qua link access thì không có vlan ID.
+
+### Access port và trunk port
+___
+> `Access port` or `untagged port`: là một **switch port** - chuyển lưu lượng tới **1 VLAN**.
+
+> `Trunk port` or `tagged port` : là một **switch port** - chuyển lưu lượng tới **nhiều VLANs**.
+
+Khi frames đi qua **trunk port** thì **VLAN tag** được thêm vào frames để phân biệt từng frame với từng VLAN khác nhau.
+
+`Native VLAN` là 1 một VLAN mà các traffic sẽ không có tag (**untagged traffic**) khi qua **trunk port**
 **NOTE** : Để các computers ở các VLAN khác nhau thì cần phải sử dụng thiết bị ở layer3 như router hoặc switch layer 3.
+
+
