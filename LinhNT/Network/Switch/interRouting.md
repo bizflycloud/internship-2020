@@ -5,4 +5,7 @@ Phần trước, ta đã sử dụng **trunk** để lưu lượng VLANs đi qua
 
 #### Lab
 ___
-**Kịch bản**: Thiết lập các thông số địa chỉ như trong hình vẽ và sau khi cấu hình có thể ping được các thiết bị ở 2 VLAN 10 và 20 với nhau.
+[](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Network/Switch/LABs/inter-vlan.PNG)
+**Kịch bản**
++ Thiết lập các thông số địa chỉ như trong hình vẽ và sau khi cấu hình có thể ping được các thiết bị ở 2 VLAN 10 và 20 với nhau.
++ Phần mềm: Packet tracer
