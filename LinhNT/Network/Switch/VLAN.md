@@ -44,4 +44,31 @@ Khi frames đi qua **trunk port** thì **VLAN tag** được thêm vào frames �
 `Native VLAN` là 1 một VLAN mà các traffic sẽ không có tag (**untagged traffic**) khi qua **trunk port**
 **NOTE** : Để các computers ở các VLAN khác nhau thì cần phải sử dụng thiết bị ở layer3 như router hoặc switch layer 3.
 
+### Giao thức 802.1Q
+___
+![](https://www.totolink.vn/public/uploads/img_article/vtplagivlantrunkingprotocollagigiaothuc8021q.png)
+
+Đây là giao thức chuẩn để nhận dạng các VLAN bằng cách thêm vào **frame header** --> **frame tagging method**
+
+### VLAN trunking protocol (VTP)
+___
+**Khái niệm**
+> `VTP` là giao thức hoạt động tại **Data link layer**. **VTP** giúp việc cấu hình VLAN luôn cập nhật và đồng nhất khi có các thay đổi: thêm, sửa, xóa,..Về VLAN trong mạng bằng việc cấu hình trên **VTP server**.
+
+**Cách hoạt động**
+![](https://www.totolink.vn/public/uploads/img_article/vtplagivlantrunkingprotocollagihoatdongcuavtp.png)
+
++ ***VTP mesages*** được gửi trong **VTP domain** mỗi **5ph/lần** hoặc khi **có sự thay đổi** trong mạng.
++ ***Mỗi VTP message*** bao gồm: `revision-number`, **tên VLAN**, **số hiệu VLAN**. Khi cấu hình VTP server và quảng bá VTP messages thì tất cả các switch sẽ update và đồng bộ. Khi VTP server thay đổi bất cứ thông số nào VLAN, nó sẽ tăng **revision-number thêm 1** và quảng bá **VTP message** đi **VTP domain**. Nếu switch nhận được **một VTP message** với **revision-number lớn hơn** ---> Nó sẽ cập nhật cấu hình VLAN.
+
+**Các cơ chế**
+![](https://www.totolink.vn/public/uploads/img_article/vtplagivlantrunkingprotocollagi3cochehoatdongcuavtp.png)
++ **Switch ở chế độ VTP Server** : tạo, sửa, xóa, VLAN. *Lưu* cấu hình VLAN trong **NVRAM** của nó. VTP server gửi VTP message trên các tất cả các **trunk links**
++ **Switch ở chế độ VTP Client** : đáp ứng, làm theo mọi thay đổi từ VTP server và gửi thông tin quảng bá ra các **trunk links**.
++ **Switch ở chế độ VTP transparent** : chức năng quan trọng nhất là **chuyển tiếp VTP messages**.
+
+## References
+___
+[Overview](https://www.totolink.vn/article/97-vtp-la-gi-vlan-trunking-protocol-la-gi.html)
+
 
