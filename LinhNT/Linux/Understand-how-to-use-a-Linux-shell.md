@@ -42,9 +42,11 @@ echo $Name
 ```
 
 **Biến read-only**
+
 ![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-how-to-use-shell/readonly-var.PNG)
 
 **Xóa giá trị của biến**
+
 ![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-how-to-use-shell/unset-var.PNG)
 
 **Các loại biến**
