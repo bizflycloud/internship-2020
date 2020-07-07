@@ -17,6 +17,9 @@
         - Có thể sử dụng syntax sau để cho tiến trình vào background ngay khi khởi chạy:
 
             `<command> &`
+           
+           
+           ->Ý nghĩa: Chuyển 1 lệnh vào trong Background ( giả sử câu lệnh đang chạy có thời gian thực thi lâu ) khi mà user muốn thực hiện tiếp 1 lệnh khác.
 
     - Nếu muốn chuyển từ 1 tiến trình hiện tại sang 1 tiến trình khác thì sử dụng syntax nào ?
         - Có thể sử dụng phím tắt `ctrl + z`
