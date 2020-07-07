@@ -140,6 +140,7 @@ else
 fi
 ```
 *Output*
+
 ![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-how-to-use-shell/conditions-results-1.PNG)
 
 **Cấu trúc lặp**
@@ -173,6 +174,7 @@ done
 ```
 
 *Output*
+
 ![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-how-to-use-shell/conditions-results-2.PNG)
 
 ## References
