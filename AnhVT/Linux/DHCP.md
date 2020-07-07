@@ -4,7 +4,7 @@
 
 - Giới thiệu
     - DHCP là gì ? cung cấp được cho thiết bị những gì
-        - DHCP là giao thức tự động cung cấp địa chỉ tên miền
+        - DHCP là giao thức tự động cung cấp địa chỉ IP
         - Cung cấp các mặt khác như DNS Sever, Default Gateway,..
 - Cách thức hoạt động và cách cài đặt ?
     - Trình bày đặc điểm và cách thức hoạt động của DHCP diễn ra như thế nào khi  cung cấp 1 địa chỉ ip cho thiết bị?
