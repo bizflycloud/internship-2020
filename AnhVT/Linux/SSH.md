@@ -46,3 +46,15 @@
         - Nhưng nếu password dùng để xác minh truy cập thì passphrase lại là 1 phương thức mã hóa các file key với ssh
     - tạo passphrase như thế nào ?
         - `ssh-keygen -p -f /dir/to/key`
+- So sánh Private key và Public Key
+
+    - Private key: được lưu tại máy của nguời dùng, có dạng chuỗi hoặc file id_rsa. mục đích dùng để xác nhận cặp key với public key
+    - Public key: được lưu tại remote sever, có dạng chuỗi hoặc file id_rsa.pub. Mục đích xác nhận quyền truy cập tới sever và dùng để xác nhận lại với public key.
+
+- Quy trình kết nối tới Sever khi sử dụng private key
+    1. Máy chủ yêu cầu user gửi file key ( ở đây ta sẽ hiểu là public key )
+    2. Sau khi có được public key thì Sever sẽ lưu public key này vào `authorized files` 
+    3. Sau đó mỗi lần khi kết nối thì SSH agent sẽ gửi lại public key về máy của user, khi xác thực cặp key public và private được thì sẽ được cung cấp quyền ssh đến sever đó và cũng như các sever khác mà không cần phải nhập lại mỗi lần ssh tới.
+    - Ngoài ra mỗi key private còn có thêm passphrase chỉ biết được bởi người dùng để giải mã private key
+
+    ⇒ cung cấp sự bảo mật và tiện lợi hơn nhiều so với việc kết nối ssh tới sever bằng password.
