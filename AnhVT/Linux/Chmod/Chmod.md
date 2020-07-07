@@ -42,6 +42,9 @@ Danh sách các mode
     - Syntax : `chmod *mode *file`
 2. Phân quyền cho đường dẫn
     - Syntax : `chmode *mode *đường dẫn`
+        
+        -> Ý nghĩa: Tương tự đối với file thì user sẽ được thực hiện các quyền được phân đối với thư mục
+        .Nếu muốn thay đổi quyền đối với tất cả mọi file trong thư mục ta thực hiện thêm option `-R` (recursive - đệ quy )
 3. Phân quyền cho các file đệ quy thuộc đường dẫn :
     - Syntax : `chmod -R *đường dẫn`
 4. Ngoài ra có thể sử dụng:
