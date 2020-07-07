@@ -19,7 +19,7 @@
             `<command> &`
            
            
-           ->Ý nghĩa: Chuyển 1 lệnh vào trong Background ( giả sử câu lệnh đang chạy có thời gian thực thi lâu ) khi mà user muốn thực hiện tiếp 1 lệnh khác.
+           ->Ý nghĩa: Chuyển 1 lệnh vào trong Background ( giả sử câu lệnh sắp thực thi có thời gian thực thi lâu ) khi mà user muốn thực hiện tiếp 1 lệnh khác.
 
     - Nếu muốn chuyển từ 1 tiến trình hiện tại sang 1 tiến trình khác thì sử dụng syntax nào ?
         - Có thể sử dụng phím tắt `ctrl + z`
