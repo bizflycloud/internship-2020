@@ -16,6 +16,7 @@ Day1=$(printf "%s %s" "$Day" "$(date)")
 echo $Hello1
 echo $Day1
 ```
+
 + **#!/bin/bash** : thông báo cho hệ thống rằng chuẩn bị có shell chạy bằng dòng lệnh
 + Thiết lập quyền thực thi cho shell **chmod +x 7-7-2020.sh**
 ![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-how-to-use-shell/chmod%2Bx.PNG)
@@ -39,6 +40,7 @@ Name="LinhNT"
 Name="LinhNT"
 echo $Name
 ```
+
 **Biến read-only**
 ![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-how-to-use-shell/readonly-var.PNG)
 
@@ -65,6 +67,7 @@ echo "Second Index: ${NAME[1]}"
 echo "First Method: ${NAME[*]}"
 echo "Second Method: ${NAME[@]}"
 ```
+
 ![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-how-to-use-shell/array.PNG)
 
 hoặc
@@ -76,6 +79,7 @@ echo "Second Index: ${NAME[1]}"
 echo "First Method: ${NAME[*]}"
 echo "Second Method: ${NAME[@]}"
 ```
+
 ![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-how-to-use-shell/array-declaration.PNG)
 
 + Để sử dụng một giá trị trong màng: **${array_name[index]}**
@@ -103,6 +107,7 @@ echo $chia
 echo $layDu
 echo $ganGiaTri
 ```
+
 *Output*
 ![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-how-to-use-shell/math.PNG)
 
@@ -120,7 +125,9 @@ else
         echo "ban nhap so nho hon 20"
 fi
 ```
+
 OR
+
 ```
 read -p "Nhap mot so > 20: " n
 if test $n -gt 20
@@ -148,7 +155,9 @@ do
         sleep 1
 done
 ```
+
 OR
+
 ```
 #!/bin/bash
 a=0
