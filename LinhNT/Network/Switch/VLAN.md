@@ -63,10 +63,15 @@ ___
 
 **Các cơ chế**
 ![](https://www.totolink.vn/public/uploads/img_article/vtplagivlantrunkingprotocollagi3cochehoatdongcuavtp.png)
+
 + **Switch ở chế độ VTP Server** : tạo, sửa, xóa, VLAN. *Lưu* cấu hình VLAN trong **NVRAM** của nó. VTP server gửi VTP message trên các tất cả các **trunk links**
 + **Switch ở chế độ VTP Client** : đáp ứng, làm theo mọi thay đổi từ VTP server và gửi thông tin quảng bá ra các **trunk links**.
 + **Switch ở chế độ VTP transparent** : chức năng quan trọng nhất là **chuyển tiếp VTP messages**.
 
+**Kịch bản** 
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Network/Switch/LABs/VTP.PNG)
+
+Xây dựng mô hình 3 VLANs (VLAN 10, 20, 30): có 3 switches (vtp client, vtp server, vtp transparent)
 ## References
 ___
 [Overview](https://www.totolink.vn/article/97-vtp-la-gi-vlan-trunking-protocol-la-gi.html)
