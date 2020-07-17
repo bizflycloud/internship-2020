@@ -181,12 +181,9 @@ do
 done
 ```
 
-*Output*
-
-![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-how-to-use-shell/conditions-results-2.PNG)
-
 ## References
 [Shell-script](https://viblo.asia/p/lam-quen-voi-shell-script-ZabG9zYzvzY6#_cau-truc-re-nhanh-14)
+
 [All-about-shell](https://www.tutorialspoint.com/unix/unix-loop-control.htm)
 
 
