@@ -90,7 +90,7 @@ echo "Second Method: ${NAME[@]}"
 **Các phép toán số học**
 *Input*
 ```
-!#/bin/bash
+#!/bin/bash
 
 a=10
 b=3
@@ -116,6 +116,7 @@ echo $ganGiaTri
 **Cấu trúc rẽ nhánh**
 *Input* : conditions.sh
 ```
+#!/bin/bash
 read -p "Nhap mot so > 20: " n
 if [ $n -gt 20 ];
 then
@@ -135,6 +136,9 @@ read -p "Nhap mot so > 20: " n
 if test $n -gt 20
 then
         echo "$n lon hon 20"
+elif test $n -eq 20
+then 
+        echo "$n bang 20"
 else 
         echo "ban nhap so nho hon 20"
 fi
@@ -165,9 +169,13 @@ OR
 #!/bin/bash
 a=0
 
-until [ $a -gt 10 ] 
+until [ $a -ge 10 ] 
 do
         echo $a
+        if test $a -eq 5
+        then
+                break
+        fi
         a=$((a+1))
         sleep 1
 done
