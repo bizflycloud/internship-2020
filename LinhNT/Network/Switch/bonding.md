@@ -116,11 +116,16 @@ ip link set bond0 up
 
 ![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Network/Switch/LABs/Bonding-EtherChannel/results-2-bonding.PNG)
 
+**Kết quả đo lần 2**
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Network/Switch/LABs/Bonding-EtherChannel/new-results-3-bonding.PNG)
+
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Network/Switch/LABs/Bonding-EtherChannel/new-results-4-bonding.PNG)
+
 Ta thấy, BW trong kịch bản 2 tăng hơn rõ rệt so với kịch bản 1 không thực hiện bonding
 
 ##### Kịch bản 3: Bonding + down 1 interface
 Ta sẽ sử dụng ping với **-i x** (x nhỏ - ví dụ -i 0.2) để kiểm tra packet loss (thông qua việc thiếu sequence numbers, hoặc nhìn vào statistics) 
-![]()
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Network/Switch/LABs/Bonding-EtherChannel/check-packet-loss-after-shutting-down-a-path.PNG)
 
 ### Linux bridge
 ![](https://static.thegeekstuff.com/wp-content/uploads/2017/06/brctl-bridge.png)
