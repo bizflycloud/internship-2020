@@ -19,7 +19,15 @@ ___
 
 ![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Network/Ipv4/Images/3.jpg)
 
+**Thêm ví dụ về VLSM**
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Network/Ipv4/Images/chiaIP1.jpg)
+
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Network/Ipv4/Images/chiaIP2.jpg)
+
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Network/Ipv4/Images/chiaIP3.jpg)
+
 ## References 
 [IPv4-Header](https://www.geeksforgeeks.org/introduction-and-ipv4-datagram-header/)
+
 [VLSM](https://cuongquach.com/tu-hoc-ccna-phuong-phap-chia-mang-con-vlsm.html)
 
