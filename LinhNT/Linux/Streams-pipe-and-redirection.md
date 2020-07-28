@@ -34,9 +34,11 @@ Trong đó : **ps aux**
 + Để tránh bị ghi đè dữ liệu, chúng ta có thể dùng **>>** operator
 
 **File text.txt ban đầu** 
+
 ![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-streams-pipe-direction/originalFile.PNG)
 
 **File text.txt sau khi append dữ liệu**
+
 ![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-streams-pipe-direction/afterAppendingFile.PNG)
 
 + **cat < text.txt** : lấy dữ liệu từ **text.txt** như là input và hiển thị nội dung.
@@ -59,7 +61,8 @@ Ví dụ : Màn hình của chúng ta cũng có 1 FD, khi một chương trình 
 - **STDERR (2)**: standard error
 
 #### 4. Error redirection
-Bất cứ khi nào chúng ta chạy 1 chương trình/command trên terminal, 3 files **standard input**, **standard output**, **standard error** luôn luôn được mở.
+> Bất cứ khi nào chúng ta chạy 1 chương trình/command trên terminal, 3 files **standard input**, **standard output**, **standard error** luôn luôn được mở.
+
 ![](https://www.guru99.com/images/Streams.png)
 
 Mặc định, **error stream** được hiển thị trên màn hình. **Error redirection** chuyển các errors tới 1 file hơn là tới màn hình (Ví dụ khi khởi chạy shell scripts,chúng ta không muốn các error messages hiển thị lên màn hình và ảnh hưởng đến output đầu ra của chúng ta).
