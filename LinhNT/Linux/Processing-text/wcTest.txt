@@ -1,0 +1,12 @@
+Red Hat
+CentOS
+Fedora
+Debian
+Scientific Linux
+OpenSuse
+Ubuntu
+Xubuntu
+Linux Mint
+Pearl Linux
+Slackware
+Mandriva
