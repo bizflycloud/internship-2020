@@ -18,12 +18,9 @@ ten eleven twelve
 ```
 
 Trong ví dụ dưới đây, **cut** sẽ trả về cột số 2
-![]()
 
-
-
-Trong ví dụ tiếp theo, **cut** sẽ trả về cột 1 và 3.
-![]()
+Tiếp theo, **cut** sẽ trả về cột 1 và 3.
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Processing-text/Images-cut-paste-join-sort/cut-return-col.png)
 
 **NOTE**: **cut** có nhiều options khác đi kèm (sử dụng **man cut** để check theem), ở đây ta sẽ thử thêm một vài ví dụ.
 + **-d** -delimiter=D : sử dụng D thay vì Tab
@@ -37,8 +34,7 @@ Chúng ta tạo một file **ipAddress.txt** gồm nội dung sau:
 
 Hiển thị subnet mask, và địa chỉ network:
 
-![]()
-
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Processing-text/Images-cut-paste-join-sort/cut-delimiter.png)
 
 
 Tiếp tục, chúng ta sẽ tạo mới **fileOne.txt**:
@@ -48,7 +44,7 @@ ABCDEFGHIJ
 ```
 
 Sau đây, chúng ta sẽ thực hiện lần lượt **lấy kí tự thứ nhất**, **lấy các kí tự từ 1 đến 3** và **lấy kí tự thứ 5 trở đi đến hết**. Câu lệnh và kết quả được show dưới đây :
-![]()
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Processing-text/Images-cut-paste-join-sort/cut-c-ch.png)
 
 #### 2. Paste - merge lines of files
 > Merge và write các dòng tương ứng **sequentially** từ mỗi FILE, được phân cách bởi **Tab** tới **standard output**.
@@ -78,11 +74,11 @@ Sau đây, để demo ta sẽ sử dụng 2 file sau :
 ```
 
 Command-lines đã sử dụng và kết quả thu được khi apply **-d**, **-s** và default.
-![](_)
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Processing-text/Images-cut-paste-join-sort/paste-commands.png)
 
 
 Ví dụ bên dưới sẽ lấy input từ **ls** và paste thành 3 cột, với phân cách là "-"
-![]()
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Processing-text/Images-cut-paste-join-sort/paste-multiple-columns.png)
 
 
 #### Join - join lines of two files on a common field.
@@ -91,7 +87,7 @@ Ví dụ bên dưới sẽ lấy input từ **ls** và paste thành 3 cột, v�
 > Để kết hợp các file mà không lặp lại dữ liệu với các trường chung.
 
 Ta tiếp tục sử dụng 2 files trong ví dụ về **paste**
-![]()
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Processing-text/Images-cut-paste-join-sort/join-s.png)
 
 Phía trên là một ví dụ đơn giản. Bây giờ chúng ta thử thay đổi 1 chút **file_two.txt** thành :
 ```
@@ -102,7 +98,7 @@ Phía trên là một ví dụ đơn giản. Bây giờ chúng ta thử thay đ�
 01 USA
 ```
 và ta thu được kết quả : 
-![]()
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Processing-text/Images-cut-paste-join-sort/join-bugs.png)
 
 Chúng ta có thể thấy rằng **05 Germany Berlin** được trả về. `Phần này em nghĩ là khi join file_two.txt vào file_one.txt, thì các dòng của file_one.txt sẽ map với từng dòng của file_two.txt. Nếu tồn tại một dòng thuộc file_one có trường chung với trường thuộc dòng này của file_two.txt nó sẽ trả về kết quả. Và nếu 2 dòng này không thuộc cùng vị trí hàng --> return error.`
 
@@ -128,10 +124,10 @@ Washington
 ```
 
 Đầu tiên, ta thực hiện sắp xếp file và được ouptut : 
-![]()
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Processing-text/Images-cut-paste-join-sort/sortSimple.png)
 
 Chúng ta có thể thấy rằng mới chỉ có các chữ cái được sắp xếp. Để sắp xếp các số ta sử dụng một số options sau :
-![]()
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Processing-text/Images-cut-paste-join-sort/sortOptions.png)
 
 Một số options hữu ích :
 
@@ -186,7 +182,7 @@ nice
 ```
 
 Đầu tiên, ta thực hiện xóa các mục trùng lặp khỏi nhiều tệp cùng một lúc và đếm số lượng mỗi mục trùng lặp
-![]()
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Processing-text/Images-cut-paste-join-sort/uniq-sort.png)
 
 #### Split 
 > **split** dử dụng để chia hoặc tách một tệp thành các phân đoạn có **kích thước bằng nhau** để xem và thao tác dễ dàng hơn và thường được sử dụng với các tệp tương đối lớn.
@@ -215,8 +211,6 @@ Mandriva
 
 Tiếp theo, ta thực hiện đếm số lượng dòng, số lượng từ, đếm số lượng bytes, kí tự (thường **-c** = **-m**, do 1 kí tự có kích thước 1 byte). Và cuối cùng ta cho hiển thị dòng text có độ dài lớn nhất là bao nhiêu (số lượng bytes).
 
-Hình dưới đây thể hiện tuần tự các công việc đã được thực hiện :
-![]()
 
 
 #### Cat - concatenate
