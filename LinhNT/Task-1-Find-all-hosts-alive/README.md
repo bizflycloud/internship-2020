@@ -7,10 +7,27 @@ Host 192.168.1.27 alive and using Windows
 Done.
 Total run in 73 sec
 
+### Demo 
+![]()
+
+> Để chạy script ta sử dụng
+
+```
+sudo bash script.sh
+```
+
+OR
+
+```
+./script.sh
+```
+
+Command-line thứ 2 yêu cầu cấp quyền để **execute** 
+> sudo chmod +x script.sh
 ### Cons 
-1. Chưa đọc được input bao gồm cả subnet mask
-2. Hiện tại chỉ đọc được 2 OSs là: Linux, Window, others : "unknown"
-3. Để chạy được dải mạng tương ứng vẫn phải config bằng tay trong **script.sh**.
+1. Hiện tại chỉ đọc được 2 OSs là: Linux, Window, others : "unknown"
+2. Mới giải quyết các dải mạng thuộc lớp C.
+
 ### Reference
 https://www.cyberciti.biz/faq/mapping-lan-with-linux-unix-ping-command/
 
