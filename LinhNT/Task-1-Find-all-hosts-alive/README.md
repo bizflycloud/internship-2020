@@ -8,7 +8,7 @@ Done.
 Total run in 73 sec
 
 ### Demo 
-![]()
+![](https://github.com/linhnt31/internship-2020/blob/Tasks/LinhNT/Task-1-Find-all-hosts-alive/demo.png)
 
 > Để chạy script ta sử dụng
 
