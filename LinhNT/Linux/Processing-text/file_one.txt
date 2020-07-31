@@ -1,0 +1,5 @@
+01 Washington 
+02 Sydney 
+03 Warsaw 
+04 Amsterdam 
+05 Berlin
