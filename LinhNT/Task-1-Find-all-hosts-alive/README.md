@@ -7,8 +7,6 @@ Host 192.168.1.27 alive and using Windows
 Done.
 Total run in 73 sec
 
-<<<<<<< HEAD
-=======
 ### Demo 
 ![](https://github.com/linhnt31/internship-2020/blob/Tasks/LinhNT/Task-1-Find-all-hosts-alive/demo.png)
 
@@ -30,7 +28,6 @@ Command-line thứ 2 yêu cầu cấp quyền để **execute**
 1. Hiện tại chỉ đọc được 2 OSs là: Linux, Window, others : "unknown"
 2. Mới giải quyết các dải mạng thuộc lớp C.
 
->>>>>>> 0f7af24881f9be54a483119a470ceca204648c97
 ### Reference
 https://www.cyberciti.biz/faq/mapping-lan-with-linux-unix-ping-command/
 
@@ -39,10 +36,7 @@ https://blog.opensistemas.com/how-to-find-alive-hosts-in-our-network/
 https://nmap.org/book/osdetect-usage.html
 
 https://www.cyberciti.biz/tips/simple-linux-and-unix-system-monitoring-with-ping-command-and-scripts.html
-<<<<<<< HEAD
-=======
 
 https://vinasupport.com/cach-su-dung-lenh-grep-trong-linux/
 
 https://www.reddit.com/r/linuxadmin/comments/3olh4k/bash_increment_first_octet_by_1/
->>>>>>> 0f7af24881f9be54a483119a470ceca204648c97
