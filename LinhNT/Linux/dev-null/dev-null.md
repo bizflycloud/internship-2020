@@ -6,9 +6,9 @@ Ví dụ khi chúng ta thử viết một đoạn text nhỏ tới nó cùng v�
 ![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-dev-null/dev-null.PNG)
 
 Trong đó: 
-+ `$?`: là một biến đặc biệt, trả về **exit status** của command trước nó. Nó sẽ bị ghi đè bất cứ khi nào chúng ta chạy 1 command mới. **0** được return chỉ ra rằng câu lệnh trước đó đã được chạy thành công. Những số **lớn hơn** chỉ 1 **error code** 
++ `$?`: là một biến đặc biệt, chức **exit status** của command trước nó. Nó sẽ bị ghi đè bất cứ khi nào chúng ta chạy 1 command mới. **0** được return chỉ ra rằng câu lệnh trước đó đã được chạy thành công. Những số **lớn hơn** chỉ 1 **error code** 
 
-Như trong phần **data-stream, pipe and redirection** chúng ta đã đề cập, khi chạy một script chúng ta không muốn error làm ảnh hưởng trong quá trình quan sát output. Để làm được điều đó, chúng ta chỉ cần put chúng tới **/dev/null** 
+Như trong phần **data-stream, pipe and redirection** chúng ta đã đề cập, khi chạy một script chúng ta không muốn error làm ảnh hưởng trong quá trình quan sát output. Để làm được điều đó, chúng ta chỉ cần put chúng **/dev/null** 
 
 Chúng ta hãy thử xem 1 ví dụ sau: 
 
