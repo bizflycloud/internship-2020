@@ -5,13 +5,13 @@ ___
 
 **Ví dụ**
 + Liệt kê file và thư mục chứa từ **ryu** hoặc **mininet**
-![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-streams-pipe-direction/pipe.PNG)
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Streams-pipe-redirection/Images-streams-pipe-redirection/pipe.PNG)
 
 Trong đó :
 + **ls ~** : liệt kê các thư mục, các file trong /home/user
 
 + Kiểm tra các process **mysql** hoặc **python** có đang chạy hay không.
-![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-streams-pipe-direction/pipe2.PNG)
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Streams-pipe-redirection/Images-streams-pipe-redirection/pipe2.PNG)
 
 Trong đó : **ps aux**
 + **a** : in ra tất cả các ***proceses*** từ tất cả các user
@@ -29,24 +29,24 @@ Trong đó : **ps aux**
 
 **Ví dụ**
 + Ouput của command **ls -al** được chuyển tiếp vào file **text.txt** (nếu text.txt đã tồn tại, dữ liệu ban đầu có thể bị ghi đè).
-![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-streams-pipe-direction/ghiOutput.PNG)
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Streams-pipe-redirection/Images-streams-pipe-redirection/ghiOutput.PNG)
 
 + Để tránh bị ghi đè dữ liệu, chúng ta có thể dùng **>>** operator
 
 **File text.txt ban đầu** 
 
-![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-streams-pipe-direction/originalFile.PNG)
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Streams-pipe-redirection/Images-streams-pipe-redirection/originalFile.PNG)
 
 **File text.txt sau khi append dữ liệu**
 
-![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-streams-pipe-direction/afterAppendingFile.PNG)
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Streams-pipe-redirection/Images-streams-pipe-redirection/afterAppendingFile.PNG)
 
 + **cat < text.txt** : lấy dữ liệu từ **text.txt** như là input và hiển thị nội dung.
-![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-streams-pipe-direction/stdinFile.PNG)
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Streams-pipe-redirection/Images-streams-pipe-redirection/stdinFile.PNG)
 
 Sử dụng theo câu lệnh ở hình phía trên sẽ giúp ta đính kèm file **text.txt** vào email với email subject là **input redirection**
 + **Error re-direction** : trong quá trình chạy shell scripts hoặc command-lines bất kì, chúng ta không muốn những error messages xuất hiện làm ảnh hưởng việc quan sát output.
-![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-streams-pipe-direction/stderr.PNG)
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Streams-pipe-redirection/Images-streams-pipe-redirection/stderr.PNG)
 
 Theo hình trên, ta đã thực hiện **find** để tìm kiếm trong thư mục hiện tại **.** cùng các file có tên bắt đầu bằng **my** và sau đó redirect các errors vào **error.log** file. Sau đó, chúng ta sử dụng **cat error.log** để kiểm tra nội dung bên trong.
 
