@@ -3,7 +3,7 @@
 
 Ví dụ khi chúng ta thử viết một đoạn text nhỏ tới nó cùng với **>**
 
-![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-dev-null/dev-null.PNG)
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/dev-null/Images-dev-null/dev-null.PNG)
 
 Trong đó: 
 + `$?`: là một biến đặc biệt, chức **exit status** của command trước nó. Nó sẽ bị ghi đè bất cứ khi nào chúng ta chạy 1 command mới. **0** được return chỉ ra rằng câu lệnh trước đó đã được chạy thành công. Những số **lớn hơn** chỉ 1 **error code** 
@@ -12,7 +12,7 @@ Như trong phần **data-stream, pipe and redirection** chúng ta đã đề c�
 
 Chúng ta hãy thử xem 1 ví dụ sau: 
 
-![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-dev-null/dev-null-tricks.PNG)
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/dev-null/Images-dev-null/dev-null-tricks.PNG)
 
 + `>/dev/null`: redirect tất cả các **standard output** sang **/dev/null**. Nó cũng tương đương với các viết **1>/dev/null**
 + `2>&1` : redirect tất cả các **standard error** tới sang **standard ouput**. Nhưng thời điểm này, **standard ouput** đang trỏ tới **/dev/null** nên **standard ouput** lúc này sẽ redirect sang **/dev/null**.
