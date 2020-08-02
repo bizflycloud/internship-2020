@@ -1,12 +1,4 @@
 #!/bin/bash
-<<<<<<< HEAD
-
-for ip in $(seq 1 254);
-do
-	ping -c 1 192.168.64.$ip>/dev/null; 
-	if [ $? -eq 0 ]; then 
-		echo "192.168.64.$ip UP";
-=======
 # 2020-07-31
 #Author: Thanh-Linh Nguyen
 #version: 1.1
@@ -29,6 +21,5 @@ do
 		sudo nmap -O $threeOctets.$ip | ((grep "Linux" || grep "Window" || echo "unknown") | head -1);
 	else 
 		echo "$threeOctets.$ip DOWN";
->>>>>>> 0f7af24881f9be54a483119a470ceca204648c97
 	fi
 done
