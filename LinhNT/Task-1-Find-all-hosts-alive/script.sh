@@ -18,7 +18,25 @@ do
 	ping -c 1 -i 0.2 $threeOctets.$ip>/dev/null; 
 	if [ $? -eq 0 ]; then 
 		echo "====> $threeOctets.$ip UP";
-		sudo nmap -O $threeOctets.$ip | ((grep "Linux" || grep "Window" || echo "unknown") | head -1);
+
+		OS="" # initialization 
+		check=false
+		# Timeout : 20s
+		for t in $(seq 1 20);
+		do
+			OS=$(sudo nmap -O $threeOctets.$ip | ((grep "Linux" || grep "Window") | head -1);)
+			# if OS != NULL --> return OS
+			if [ ! -z "$OS" ]; then 
+				echo $OS;
+				check=true
+				break;
+			fi
+		done
+
+		# Check if whether OS is NULL or not 
+		if [ "$check" = false ]; then
+			echo "unknown";
+		fi
 	else 
 		echo "$threeOctets.$ip DOWN";
 	fi

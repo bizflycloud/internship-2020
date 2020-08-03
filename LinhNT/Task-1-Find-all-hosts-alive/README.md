@@ -40,3 +40,7 @@ https://www.cyberciti.biz/tips/simple-linux-and-unix-system-monitoring-with-ping
 https://vinasupport.com/cach-su-dung-lenh-grep-trong-linux/
 
 https://www.reddit.com/r/linuxadmin/comments/3olh4k/bash_increment_first_octet_by_1/
+
+https://www.cyberciti.biz/faq/bash-shell-find-out-if-a-variable-has-null-value-or-not/
+
+https://www.cyberciti.biz/faq/how-to-assign-a-grep-command-value-to-a-variable-in-linuxunix/
