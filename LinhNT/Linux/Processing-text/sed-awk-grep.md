@@ -29,7 +29,7 @@ Chúng ta sẽ kết hợp **grep** với một số parameters đơn giản :
 + **-l** : chỉ hiển thị tên của files mà bên trong nó có các lines match với input. Phù hợp cho việc **tìm kiếm thông qua multiple files**.
 + **-i** : **ignore case**. Khi tìm kiếm xử lí upper case và lower case tương tự như nhau.
 
-![]()
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Processing-text/Images-grep-awk-sed/grep1.png)
 
 
 **NOTE** : Để tìm kiếm **a specical character**. Chúng ta cần thêm `\` phía trước kí tự đặc biệt, nếu không trình thông dịch sẽ hiểu nhầm nó là 1 **regexp**
@@ -74,7 +74,7 @@ Sau đây, chúng ta sẽ tạo file **employee.txt** để thực hiện một 
 
 Trong hình dưới đây, chúng ta thực hiện lần lượt **default behavior**, in ra từng dòng matches với patttern và chỉ in ra những fields nhất định
 
-![]()
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Processing-text/Images-grep-awk-sed/awk.png)
 
 Trong đó :
 + Giả sử, trong 1 line có 4 từ thì **awk** sẽ phân chia nó bởi dấu cách và chứa trong các biến **$n** (n = 1, 2,...). Chú ý, **$0** đại diện cho toàn bộ dòng.
@@ -97,11 +97,11 @@ END { Actions }
 + **actions** được chỉ định trong **BEGIN** sẽ được ***chạy trước*** khi bắt đầu đọc các dòng trong file.
 + **actions** được chỉ định trong **END** sẽ được ***chạy sau*** khi hoàn thành việc đọc và xử lí các dòng của file.
 
-![]()
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Processing-text/Images-grep-awk-sed/awk-BEGIN-END.png)
 
 Tiếp theo, chúng ta sẽ thực hiện thêm một số ví dụ: liệt kê những nhân viên có id > 200, những người thuộc phòng ban **Technology**, và đếm số người thuộc phòng ban Technology.
 
-![]()
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Processing-text/Images-grep-awk-sed/awk3.png)
 
 **NOTE**
 + `~` operator là để sử dụng cho việc so sánh giữa một field cùng với regexp. Nếu kết quả khớp, dòng dữ liệu sẽ được in ra màn hình.
