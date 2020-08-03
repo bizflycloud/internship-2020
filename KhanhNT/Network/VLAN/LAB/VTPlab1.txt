@@ -1,0 +1,181 @@
+Th 6 thg 7 31 21:53:25 2020   Switch5   Switch>enable
+Th 6 thg 7 31 21:53:42 2020   Switch5   Switch#config t
+Th 6 thg 7 31 21:54:33 2020   Switch5   Switch(config)#hostname SW1
+Th 6 thg 7 31 21:55:26 2020   Switch5   SW1(config)#int f0/3
+Th 6 thg 7 31 21:56:17 2020   Switch5   SW1(config-if)#exit
+Th 6 thg 7 31 21:56:40 2020   Switch5   SW1(config)#int range int f0/3 - 4
+Th 6 thg 7 31 21:56:51 2020   Switch5   SW1(config)#int range int 0/3 - 4
+Th 6 thg 7 31 21:56:57 2020   Switch5   SW1(config)#int range f0/3 - 4
+Th 6 thg 7 31 21:57:32 2020   Switch5   SW1(config-if-range)#switchport mode trunk
+Th 6 thg 7 31 21:59:31 2020   Switch6   Switch>enable
+Th 6 thg 7 31 21:59:32 2020   Switch6   Switch#config t
+Th 6 thg 7 31 21:59:39 2020   Switch6   Switch(config)#hostname SW@
+Th 6 thg 7 31 21:59:42 2020   Switch6   SW@(config)#hostname SW2
+Th 6 thg 7 31 22:00:24 2020   Switch6   SW2(config)#int range f0/1-2
+Th 6 thg 7 31 22:00:36 2020   Switch6   SW2(config-if-range)#switchport mode trunk
+Th 6 thg 7 31 22:00:57 2020   Switch6   SW2(config-if-range)#end
+Th 6 thg 7 31 22:01:03 2020   Switch6   SW2#wr
+Th 6 thg 7 31 22:01:08 2020   Switch5   SW1(config-if-range)#end
+Th 6 thg 7 31 22:01:09 2020   Switch5   SW1#wr
+Th 6 thg 7 31 22:02:24 2020   Switch7   Switch>enable
+Th 6 thg 7 31 22:02:30 2020   Switch7   Switch#hostname SW3
+Th 6 thg 7 31 22:02:58 2020   Switch7   Switch#config t
+Th 6 thg 7 31 22:03:06 2020   Switch7   Switch(config)#hostname SW3
+Th 6 thg 7 31 22:03:18 2020   Switch7   SW3(config)#int f0/1
+Th 6 thg 7 31 22:03:23 2020   Switch7   SW3(config-if)#switchport mode trunk
+Th 6 thg 7 31 22:03:24 2020   Switch7   SW3(config-if)#end
+Th 6 thg 7 31 22:03:25 2020   Switch7   SW3#wr
+Th 6 thg 7 31 22:04:47 2020   Switch5   SW1#config t
+Th 6 thg 7 31 22:04:51 2020   Switch5   SW1(config)#vtp node ?
+Th 6 thg 7 31 22:04:52 2020   Switch5   SW1(config)#vtp node 
+Th 6 thg 7 31 22:04:58 2020   Switch5   SW1(config)#vtp mode 
+Th 6 thg 7 31 22:05:00 2020   Switch5   SW1(config)#vtp mode ?
+Th 6 thg 7 31 22:05:00 2020   Switch5   SW1(config)#vtp mode 
+Th 6 thg 7 31 22:05:11 2020   Switch5   SW1(config)#vtp mode server 
+Th 6 thg 7 31 22:05:24 2020   Switch5   SW1(config)#vtp domain CISCO
+Th 6 thg 7 31 22:05:47 2020   Switch5   SW1(config)#vtp password 1
+Th 6 thg 7 31 22:05:59 2020   Switch5   SW1(config)#end
+Th 6 thg 7 31 22:06:01 2020   Switch5   SW1#wr
+Th 6 thg 7 31 22:06:14 2020   Switch6   SW2#config t
+Th 6 thg 7 31 22:06:18 2020   Switch6   SW2(config)#end
+Th 6 thg 7 31 22:06:23 2020   Switch6   SW2#show vtp status
+Th 6 thg 7 31 22:06:52 2020   Switch6   SW2#config t
+Th 6 thg 7 31 22:06:56 2020   Switch6   SW2(config)#vtp password 1
+Th 6 thg 7 31 22:07:06 2020   Switch6   SW2(config)#end
+Th 6 thg 7 31 22:07:07 2020   Switch6   SW2#wr
+Th 6 thg 7 31 22:07:18 2020   Switch7   SW3#config t
+Th 6 thg 7 31 22:07:21 2020   Switch7   SW3(config)#vtp password 1
+Th 6 thg 7 31 22:07:24 2020   Switch7   SW3(config)#end
+Th 6 thg 7 31 22:07:25 2020   Switch7   SW3#wr
+Th 6 thg 7 31 22:07:31 2020   Switch7   SW3#show vtp status 
+Th 6 thg 7 31 22:07:43 2020   Switch7   SW3#show vtp password 
+Th 6 thg 7 31 22:41:22 2020   Switch7   SW3>enable
+Th 6 thg 7 31 22:41:26 2020   Switch7   SW3#show vlan brief
+Th 6 thg 7 31 22:41:45 2020   Switch7   SW3#show int trunk
+Th 6 thg 7 31 22:42:43 2020   Switch5   SW1>enable
+Th 6 thg 7 31 22:42:45 2020   Switch5   SW1#config t
+Th 6 thg 7 31 22:42:48 2020   Switch5   SW1(config)#vlan 10
+Th 6 thg 7 31 22:42:57 2020   Switch5   SW1(config-vlan)#exit
+Th 6 thg 7 31 22:43:01 2020   Switch5   SW1(config)#vlan 20
+Th 6 thg 7 31 22:43:03 2020   Switch5   SW1(config-vlan)#exit
+Th 6 thg 7 31 22:43:07 2020   Switch5   SW1(config)#vlan 30 
+Th 6 thg 7 31 22:43:16 2020   Switch5   SW1(config-vlan)#exit
+Th 6 thg 7 31 22:43:20 2020   Switch5   SW1(config)#vlan 40
+Th 6 thg 7 31 22:43:24 2020   Switch5   SW1(config-vlan)#exit
+Th 6 thg 7 31 22:43:38 2020   Switch5   SW1(config)#end
+Th 6 thg 7 31 22:43:43 2020   Switch5   SW1#show vtp status
+Th 6 thg 7 31 22:44:22 2020   Switch5   SW1#show vlan brief
+Th 6 thg 7 31 22:45:02 2020   Switch6   SW2>enable
+Th 6 thg 7 31 22:45:05 2020   Switch6   SW2#show vlan brief 
+Th 6 thg 7 31 22:45:19 2020   Switch7   SW3#show vlan brief
+Th 6 thg 7 31 22:45:37 2020   Switch5   SW1#config t
+Th 6 thg 7 31 22:46:28 2020   Switch5   SW1(config)#int range 
+Th 6 thg 7 31 22:46:32 2020   Switch5   SW1(config)#int f0/2
+Th 6 thg 7 31 22:46:41 2020   Switch5   SW1(config-if)#switchport mode access 
+Th 6 thg 7 31 22:47:01 2020   Switch5   SW1(config-if)#switchport access vlan 10
+Th 6 thg 7 31 22:47:04 2020   Switch5   SW1(config-if)#end
+Th 6 thg 7 31 22:47:06 2020   Switch5   SW1#wr
+Th 6 thg 7 31 22:47:19 2020   Switch6   SW2#config t
+Th 6 thg 7 31 22:47:28 2020   Switch6   SW2(config)#int f0/3
+Th 6 thg 7 31 22:47:32 2020   Switch6   SW2(config-if)#switchport mode access 
+Th 6 thg 7 31 22:47:37 2020   Switch6   SW2(config-if)#switchport access vlan 20
+Th 6 thg 7 31 22:47:49 2020   Switch7   SW3#config t
+Th 6 thg 7 31 22:47:52 2020   Switch7   SW3(config)#int f0/3
+Th 6 thg 7 31 22:48:06 2020   Switch7   SW3(config-if)#switchport mode access 
+Th 6 thg 7 31 22:48:14 2020   Switch7   SW3(config-if)#switchport access vlan 30
+Th 6 thg 7 31 22:48:37 2020   Switch7   SW3(config-if)#exit
+Th 6 thg 7 31 22:48:40 2020   Switch7   SW3(config)#int f0/3
+Th 6 thg 7 31 22:48:45 2020   Switch7   SW3(config-if)#switchport mode access 
+Th 6 thg 7 31 22:48:51 2020   Switch7   SW3(config-if)#switchport access vlan 40
+Th 6 thg 7 31 22:48:54 2020   Switch7   SW3(config-if)#end
+Th 6 thg 7 31 22:48:55 2020   Switch7   SW3#sw
+Th 6 thg 7 31 22:57:38 2020   Switch7   SW3#show vlan brief
+Th 6 thg 7 31 22:57:50 2020   Switch6   SW2>enable
+Th 6 thg 7 31 22:57:53 2020   Switch6   SW2#show vlan brief
+Th 6 thg 7 31 22:58:36 2020   Switch7   SW3#config t
+Th 6 thg 7 31 22:58:39 2020   Switch7   SW3(config)#int f0/2
+Th 6 thg 7 31 22:58:42 2020   Switch7   SW3(config-if)#switchport mode access 
+Th 6 thg 7 31 22:58:50 2020   Switch7   SW3(config-if)#switchport  access vlan 30
+Th 6 thg 7 31 22:58:51 2020   Switch7   SW3(config-if)#end
+Th 6 thg 7 31 22:58:55 2020   Switch7   SW3#show vlan brief
+Th 6 thg 7 31 22:59:39 2020   Router0   Router>enable
+Th 6 thg 7 31 22:59:50 2020   Switch7   SW3#wr
+Th 6 thg 7 31 23:00:03 2020   Router0   Router#hostname R1
+Th 6 thg 7 31 23:00:10 2020   Router0   Router#config t
+Th 6 thg 7 31 23:00:13 2020   Router0   Router(config)#int f0/0
+Th 6 thg 7 31 23:00:25 2020   Router0   Router(config-if)#no shut
+Th 6 thg 7 31 23:00:31 2020   Router0   Router(config-if)#no ip address 
+Th 6 thg 7 31 23:00:38 2020   Router0   Router(config-if)#end
+Th 6 thg 7 31 23:00:40 2020   Router0   Router#config t
+Th 6 thg 7 31 23:00:45 2020   Router0   Router(config)#int 0/0.10
+Th 6 thg 7 31 23:00:51 2020   Router0   Router(config)#int f0/0.10
+Th 6 thg 7 31 23:01:00 2020   Router0   Router(config-subif)#encapsulation dot1Q 10
+Th 6 thg 7 31 23:01:43 2020   Router0   Router(config-subif)#ip address 172.16.10.254 255.255.255.0
+Th 6 thg 7 31 23:01:47 2020   Router0   Router(config-subif)#end
+Th 6 thg 7 31 23:01:49 2020   Router0   Router#config t
+Th 6 thg 7 31 23:01:53 2020   Router0   Router(config)#hostname R1
+Th 6 thg 7 31 23:02:00 2020   Router0   R1(config)#int f0/0.20
+Th 6 thg 7 31 23:02:06 2020   Router0   R1(config-subif)#encapsulation dot1Q 20
+Th 6 thg 7 31 23:02:54 2020   Router0   R1(config-subif)#ip add 172.16.11.62 255.255.255.192
+Th 6 thg 7 31 23:02:56 2020   Router0   R1(config-subif)#end
+Th 6 thg 7 31 23:02:58 2020   Router0   R1#config t
+Th 6 thg 7 31 23:03:03 2020   Router0   R1(config)#int f0/0.30
+Th 6 thg 7 31 23:03:08 2020   Router0   R1(config-subif)#encapsulation dot1Q 30
+Th 6 thg 7 31 23:03:36 2020   Router0   R1(config-subif)#ip add 172.16.11.94 255.255.255.224
+Th 6 thg 7 31 23:03:40 2020   Router0   R1(config-subif)#end
+Th 6 thg 7 31 23:03:41 2020   Router0   R1#config t
+Th 6 thg 7 31 23:03:46 2020   Router0   R1(config)#int f0/0.40
+Th 6 thg 7 31 23:03:51 2020   Router0   R1(config-subif)#encapsulation dot1Q 40
+Th 6 thg 7 31 23:04:25 2020   Router0   R1(config-subif)#ip add 172.16.11.110 255.255.255.240
+Th 6 thg 7 31 23:04:26 2020   Router0   R1(config-subif)#end
+Th 6 thg 7 31 23:04:30 2020   Router0   R1#show ip int brief 
+Th 6 thg 7 31 23:16:00 2020   Router1   Router>enable
+Th 6 thg 7 31 23:16:02 2020   Router1   Router#config t
+Th 6 thg 7 31 23:16:11 2020   Router1   Router(config)#hostname ISP
+Th 6 thg 7 31 23:16:20 2020   Router1   ISP(config)#int f0/0
+Th 6 thg 7 31 23:16:39 2020   Router1   ISP(config-if)#no shut
+Th 6 thg 7 31 23:16:53 2020   Router1   ISP(config-if)#int f0/1
+Th 6 thg 7 31 23:16:55 2020   Router1   ISP(config-if)#no shut
+Th 6 thg 7 31 23:17:08 2020   Router1   ISP(config-if)#ip add 10.10.10.254 255.255.255.0
+Th 6 thg 7 31 23:17:09 2020   Router1   ISP(config-if)#end
+Th 6 thg 7 31 23:17:22 2020   Router1   ISP#config t
+Th 6 thg 7 31 23:17:25 2020   Router1   ISP(config)#int f0/0
+Th 6 thg 7 31 23:17:29 2020   Router1   ISP(config-if)#no shut
+Th 6 thg 7 31 23:17:48 2020   Router1   ISP(config-if)#ip add 88.40.12.2 255.255.255.252
+Th 6 thg 7 31 23:18:02 2020   Router1   ISP(config-if)#end
+Th 6 thg 7 31 23:18:03 2020   Router1   ISP#wr
+Th 6 thg 7 31 23:18:11 2020   Router1   ISP#config t
+Th 6 thg 7 31 23:18:16 2020   Router1   ISP(config)#clock rate
+Th 6 thg 7 31 23:18:51 2020   Router1   ISP(config)#clock rate
+Th 6 thg 7 31 23:18:52 2020   Router1   ISP(config)#end
+Th 6 thg 7 31 23:18:55 2020   Router1   ISP#show ip route
+Th 6 thg 7 31 23:19:00 2020   Router1   ISP#show ip int brief
+Th 6 thg 7 31 23:19:20 2020   Router0   R1>enable
+Th 6 thg 7 31 23:19:22 2020   Router0   R1#config t
+Th 6 thg 7 31 23:19:31 2020   Router0   R1(config)#int f0/1
+Th 6 thg 7 31 23:19:33 2020   Router0   R1(config-if)#no shut
+Th 6 thg 7 31 23:19:58 2020   Router0   R1(config-if)#ip add 88.40.12.0 255.255.255.252
+Th 6 thg 7 31 23:20:02 2020   Router0   R1(config-if)#ip add 88.40.12.1 255.255.255.252
+Th 6 thg 7 31 23:20:03 2020   Router0   R1(config-if)#end
+Th 6 thg 7 31 23:20:10 2020   Router0   R1#show ip int brief
+Th 6 thg 7 31 23:20:39 2020   Router0   R1#ping 88.40.12.2
+Th 6 thg 7 31 23:21:38 2020   Router0   R1#show ip route
+Th 6 thg 7 31 23:22:02 2020   Router0   R1#config t
+Th 6 thg 7 31 23:22:18 2020   Router0   R1(config)#ip dhcp pool VLAN10
+Th 6 thg 7 31 23:22:41 2020   Router0   R1(dhcp-config)#network 172.16.10.0
+Th 6 thg 7 31 23:22:48 2020   Router0   R1(dhcp-config)#network 172.16.10.0 255.255.255.0
+Th 6 thg 7 31 23:23:19 2020   Router0   R1(dhcp-config)#default-router 172.16.10.254
+Th 6 thg 7 31 23:23:25 2020   Router0   R1(dhcp-config)#dns-server 10.10.10.1
+Th 6 thg 7 31 23:23:34 2020   Router0   R1(dhcp-config)#exit
+Th 6 thg 7 31 23:23:43 2020   Router0   R1(config)#ip dhcp pool VLAN20
+Th 6 thg 7 31 23:24:02 2020   Router0   R1(dhcp-config)#network 172.16.11.0 255.255.255.192
+Th 6 thg 7 31 23:24:11 2020   Router0   R1(dhcp-config)#default-router 172.16.11.62
+Th 6 thg 7 31 23:24:15 2020   Router0   R1(dhcp-config)#dns-server 10.10.10.1
+Th 6 thg 7 31 23:24:23 2020   Router0   R1(dhcp-config)#exit
+Th 6 thg 7 31 23:24:33 2020   Router0   R1(config)#ip dhcp pool VLAN30
+Th 6 thg 7 31 23:25:00 2020   Router0   R1(dhcp-config)#network 172.16.11.64 255.255.255.224
+Th 6 thg 7 31 23:25:05 2020   Router0   R1(dhcp-config)#dns-server 10.10.10.1
+Th 6 thg 7 31 23:25:07 2020   Router0   R1(dhcp-config)#end
+Th 6 thg 7 31 23:25:09 2020   Router0   R1#config t
+Th 6 thg 7 31 23:25:13 2020   Router0   R1(config)#end
+Th 6 thg 7 31 23:25:18 2020   Router0   R1#show ip dhcp pool 
