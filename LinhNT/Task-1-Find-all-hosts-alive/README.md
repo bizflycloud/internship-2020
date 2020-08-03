@@ -27,6 +27,7 @@ Command-line thứ 2 yêu cầu cấp quyền để **execute**
 ### Cons 
 1. Hiện tại chỉ đọc được 2 OSs là: Linux, Window, others : "unknown"
 2. Mới giải quyết các dải mạng thuộc lớp C.
+3. nmap phải quét 64000 ports (số lượng quá nhiều) , nhiều khi timeout được set quá ngắn để nmap có thể kịp detect.
 
 ### Reference
 https://www.cyberciti.biz/faq/mapping-lan-with-linux-unix-ping-command/
