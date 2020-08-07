@@ -17,7 +17,7 @@
 
 - Cơ chế lọc gói tin của IPtables dựa trên 3 thành phần cơ bản:
  - **Table**.
- - ** Chain**.
+ - **Chain**.
  - **Target**.
 - Table là bảng xử lí các gói tin theo những cách cụ thể. Mặc định là filter table, ngoài ra thêm được các bảng khác nữa.
 - Mỗi bảng sẽ gắn thêm các **chain**. Việc gắn thêm **chain** sẽ cho phép xứ lí gói tin ở các giai đoạn khác nhau.
