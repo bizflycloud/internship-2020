@@ -1,7 +1,7 @@
 #!/bin/bash
-# 2020-07-31
+# 2020-08-07
 #Author: Thanh-Linh Nguyen
-#version: 1.1
+#version: 1.2
 
 read -p "Enter a net ip: " ip
 
@@ -20,23 +20,17 @@ do
 		echo "====> $threeOctets.$ip UP";
 
 		OS="" # initialization 
-		check=false
-		# Timeout : 20s
-		for t in $(seq 1 20);
-		do
-			OS=$(sudo nmap -O $threeOctets.$ip | ((grep "Linux" || grep "Window") | head -1);)
-			# if OS != NULL --> return OS
-			if [ ! -z "$OS" ]; then 
-				echo $OS;
-				check=true
-				break;
-			fi
-		done
+		# Timeout : 15s
+		OS=$(sudo timeout 15 nmap -O $threeOctets.$ip | ((grep "Linux" || grep "Window") | head -1);)
+		
+		# if OS != NULL --> return OS
+		if [ ! -z "$OS" ]; then 
+			echo $OS;
 
-		# Check if whether OS is NULL or not 
-		if [ "$check" = false ]; then
+		else
 			echo "unknown";
 		fi
+
 	else 
 		echo "$threeOctets.$ip DOWN";
 	fi
