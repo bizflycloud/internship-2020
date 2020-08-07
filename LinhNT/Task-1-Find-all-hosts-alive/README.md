@@ -27,7 +27,7 @@ Command-line thứ 2 yêu cầu cấp quyền để **execute**
 ### Cons 
 1. Hiện tại chỉ đọc được 2 OSs là: Linux, Window, others : "unknown"
 2. Mới giải quyết các dải mạng thuộc lớp C.
-3. nmap phải quét 64000 ports (số lượng quá nhiều) , nhiều khi timeout được set quá ngắn để nmap có thể kịp detect.
+3. **nmap** phải quét 64000 ports (số lượng quá nhiều) , nhiều khi timeout được set quá ngắn để nmap có thể kịp detect ( Fixed by using TTL to detect) 
 
 ### Reference
 https://www.cyberciti.biz/faq/mapping-lan-with-linux-unix-ping-command/
@@ -45,3 +45,5 @@ https://www.reddit.com/r/linuxadmin/comments/3olh4k/bash_increment_first_octet_b
 https://www.cyberciti.biz/faq/bash-shell-find-out-if-a-variable-has-null-value-or-not/
 
 https://www.cyberciti.biz/faq/how-to-assign-a-grep-command-value-to-a-variable-in-linuxunix/
+
+https://www3.ntu.edu.sg/home/ehchua/programming/howto/Regexe.html
