@@ -22,7 +22,7 @@ echo $Day1
 ![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-how-to-use-shell/chmod%2Bx.PNG)
 
 + Chạy script: **bash 7-7-2020.sh**, **sh 7-7-2020.sh**, **./7-7-2020.sh**
-![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-how-to-use-shell/run-script.PNG)
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Understand-how-to-use-a-Linux-shell/Images-how-to-use-shell/run-script.PNG)
 
 **NOTE** 
 + **bash script.sh** : bỏ qua **!#**, vì **bash** được chỉ định như 1 chương trình để chạy **script.sh**
@@ -43,15 +43,15 @@ echo $Name
 
 **Biến read-only**
 
-![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-how-to-use-shell/readonly-var.PNG)
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Understand-how-to-use-a-Linux-shell/Images-how-to-use-shell/readonly-var.PNG)
 
 **Xóa giá trị của biến**
 
-![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-how-to-use-shell/unset-var.PNG)
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Understand-how-to-use-a-Linux-shell/Images-how-to-use-shell/unset-var.PNG)
 
 **Các loại biến**
 + Biến hệ thống : tạo ra, quản lí bởi hệ thống và được viết hoa.
-![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-how-to-use-shell/types-of-var.PNG)
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Understand-how-to-use-a-Linux-shell/Images-how-to-use-shell/types-of-var.PNG)
 
 + Biến do người dùng tự định nghĩa: tạo và định nghĩa bởi người dùng.
 **Mảng**
@@ -70,7 +70,7 @@ echo "First Method: ${NAME[*]}"
 echo "Second Method: ${NAME[@]}"
 ```
 
-![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-how-to-use-shell/array.PNG)
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Understand-how-to-use-a-Linux-shell/Images-how-to-use-shell/array.PNG)
 
 hoặc
 ```
@@ -82,7 +82,7 @@ echo "First Method: ${NAME[*]}"
 echo "Second Method: ${NAME[@]}"
 ```
 
-![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-how-to-use-shell/array-declaration.PNG)
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Understand-how-to-use-a-Linux-shell/Images-how-to-use-shell/array-declaration.PNG)
 
 + Để sử dụng một giá trị trong màng: **${array_name[index]}**
 + Để in ra toàn bộ mảng: **{array_name[*]}** hoặc **{array_name[@]}**
@@ -111,7 +111,7 @@ echo $ganGiaTri
 ```
 
 *Output*
-![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-how-to-use-shell/math.PNG)
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Understand-how-to-use-a-Linux-shell/Images-how-to-use-shell/math.PNG)
 
 **Cấu trúc rẽ nhánh**
 *Input* : conditions.sh
@@ -145,7 +145,7 @@ fi
 ```
 *Output*
 
-![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Images-how-to-use-shell/conditions-results-1.PNG)
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Understand-how-to-use-a-Linux-shell/Images-how-to-use-shell/conditions-results-1.PNG)
 
 **Cấu trúc lặp**
 ```
