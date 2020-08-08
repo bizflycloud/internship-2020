@@ -61,7 +61,7 @@ Chúng ta sẽ thực hiện demo cùng với **filter table**. **Filter table**
 
 ###### 4.1. Đầu tiên, chúng ta thực hiện block outgoing tracffic tới domain bizflycloud.vn
 
-![]()
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Iptables/Images/block-outgoing-traffic.png)
 
 Trong đó : 
 + **-A OUTPUT** :  add các rules tới chain **OUTPUT** 
@@ -78,7 +78,7 @@ Lúc này, chúng ta không thể truy cập vào trang web trên. Để có th�
 
 ###### 4.2. Tiếp theo, chúng ta sẽ thực hiện block các traffic đi qua port 443 (https) đến máy chủ
 
-![]()
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Iptables/Images/block-port.png)
 
 
 ## References
