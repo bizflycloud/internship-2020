@@ -257,13 +257,14 @@ sudo chown -R www-data:www-data /var/www
 
 ##### 3.5. Hoàn thành việc install thông qua Web interface.
 \- Truy cập vào wordpress thông qua IP của web server với port 80 : http://192.168.76.89/
-![]()
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Webserver-Database/Images/wordpress/wordpress1.png)
 
 \- ĐIền thông tin cần thiết. Khi hoàn tất, nhấn `install` ở bên dưới. Ta sẽ có giao diện Wordpress như hình dưới : 
-![]()
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Webserver-Database/Images/wordpress/dashboard-wordpress.png)
 
 \- Sử dụng theme mới : 
-![]()
+![](https://github.com/linhnt31/internship-2020/blob/linhnt-baocao-t1/LinhNT/Linux/Webserver-Database/Images/wordpress/custom-wordpress.png)
+
 ## References
 + [LAMP stack](https://stackoverflow.com/questions/10060285/what-is-a-lamp-stack#:~:text=A%20LAMP%20Stack%20is%20a%20set%20of%20open%2Dsource%20software,and%20the%20PHP%20programming%20language.)
 
