@@ -47,3 +47,5 @@ https://www.cyberciti.biz/faq/bash-shell-find-out-if-a-variable-has-null-value-o
 https://www.cyberciti.biz/faq/how-to-assign-a-grep-command-value-to-a-variable-in-linuxunix/
 
 https://www3.ntu.edu.sg/home/ehchua/programming/howto/Regexe.html
+
+https://dev.to/ankitdobhal/operating-system-detection-using-ttl-value-powershell-ping-51l8

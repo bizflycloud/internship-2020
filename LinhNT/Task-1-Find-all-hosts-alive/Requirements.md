@@ -7,6 +7,6 @@ sudo apt-get install nmap
 ###### 2. Kiến thức về bash scripts
 + Processing text
 + **/dev/null**
-+ **seq**
++ **seq**, **grep**
 + Tính toán +, -, lũy thừa
 

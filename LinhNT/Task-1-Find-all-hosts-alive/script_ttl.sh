@@ -25,9 +25,9 @@ do
 		# Get TTL value 
 		ttl=$(echo $ttlMatched | cut -d "=" -f2)
 		
-		if [ $ttl -eq 128 ]; then
+		if [ $ttl -gt 64 -a $ttl -lt 129 ]; then
 			echo "Running Window";
-		elif [ $ttl -eq 64 ]; then
+		elif [ $ttl -lt 65 ]; then
 			echo "Running Linux";
 		else 
 			echo "unknown";
