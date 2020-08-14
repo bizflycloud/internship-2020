@@ -36,6 +36,8 @@ for ip in $@ ;do
             		elif [ $ttl == 128 ]
             		then
                 		echo "$o4.$o3.$o2.$o1 is Windows"
+                	else 
+                		echo "$o4.$o3.$o2.$o1 is unknows"
                 		
  					
             	fi
