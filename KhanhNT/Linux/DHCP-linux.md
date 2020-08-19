@@ -37,3 +37,4 @@
 
 - B4: Máy server được client chấp nhận gửi gói tin `DHCP ACK` xác nhận, cho biết địa chỉ IP, Subnet Mask, ngoài ra còn default gateway, DNS server. 
 
+
