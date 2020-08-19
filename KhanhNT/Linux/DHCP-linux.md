@@ -37,4 +37,6 @@
 
 - B4: Máy server được client chấp nhận gửi gói tin `DHCP ACK` xác nhận, cho biết địa chỉ IP, Subnet Mask, ngoài ra còn default gateway, DNS server. 
 
+https://news.cloud365.vn/hoat-dong-cua-he-thong-dns/#more-4799
 
+https://news.cloud365.vn/dns-va-cac-khai-niem-lien-quan/#more-4542

@@ -79,5 +79,5 @@
 - n: tạo phân vùng mới
 - d: xóa phân vùng
 - q: xóa mà không làm thay đổi
-- ư: lưu thay đổi
+- u: lưu thay đổi
 
