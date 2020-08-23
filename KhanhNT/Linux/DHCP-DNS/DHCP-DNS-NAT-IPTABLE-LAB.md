@@ -31,3 +31,27 @@
 - /etc/init.d/networking restart 
 
 ![](https://i.ibb.co/DbSFtJw/Screenshot-from-2020-08-20-15-53-00.png)
+
+## Bước 2: Cấu hình NAT
+- Kích hoạt IPtables forward sang máy khác
+   + nano `/etc/sysctl.conf`
+   + Sửa  `net.ipv4.ip_forward = 1`
+- `sysctl -p /etc/sysctl.conf`: kiểm tra cài đặt
+- `/etc/init.d/procps restart`
+- Thiết lập kết nối
+
+```
+iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+```
+
+- ACCEPT gói tin thông qua server từ mạng LAN và cấu hình NAT
+```
+iptables -A FORWARD -i ens3 -o ens4 -j ACCEPT
+iptables -t nat -A POSTROUTING -o ens4 -s 192.168.0.0/24 -j SNAT --to-source 172.29.129.64
+iptables -t nat -A POSTROUTING -o ens4 -s 192.168.0.0/24 -j MASQUERADE
+```
+
+- `iptables -t nat -L`
+
+![](https://i.ibb.co/ZGf1fTf/Screenshot-from-2020-08-20-17-27-11.png)
