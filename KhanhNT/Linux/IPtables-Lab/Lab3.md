@@ -49,8 +49,8 @@
 - Cấu hình gói tin đến port 80 ứng với port tương tự trên backend1, Cấu hình gói tin đến port 443 ứng với port tương tự trên backend2.
    + `iptables -A FORWARD -p tcp --dst 10.10.10.2 --dport 80 -j ACCEPT`
    + `iptables -A FORWARD -p tcp --dst 10.10.10.3 --dport 443 -j ACCEPT`
-   + `iptables -t nat -A PREROUTING -i ens3 -p tcp 192.168.17.55 --dport 80 \-j DNAT --to-destination 10.10.10.2:80`
-   + `iptables -t nat -A PREROUTING -i ens3 -p tcp 192.168.17.55 --dport 443 \-j DNAT --to-destination 10.10.10.2:443`
+   + `iptables -t nat -A PREROUTING -i ens3 -p tcp -d 192.168.17.55 --dport 80 \-j DNAT --to-destination 10.10.10.2:80`
+   + `iptables -t nat -A PREROUTING -i ens3 -p tcp -d 192.168.17.55 --dport 443 \-j DNAT --to-destination 10.10.10.2:443`
 
 ![](https://i.ibb.co/R4cQP4v/Screenshot-from-2020-08-25-18-10-08.png)
 
