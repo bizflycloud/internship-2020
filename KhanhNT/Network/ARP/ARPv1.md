@@ -36,7 +36,7 @@
    + Chiếm 16 bit gói tin
    + Kiểu giao thức do máy gửi cung cấp (IPv4 là 0x0800)
 - **Hardware length (HLEN)**
-   + Độ dài (octets) của hardware address (Ethernet address có độ dài 6 octets
+   + Độ dài (octets) của hardware address (Ethernet address có độ dài 6 octets)
 - **Protocol length (PLEN)**
    + Độ dài protocol address được sử dụng 
 - **Operation**

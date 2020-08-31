@@ -45,12 +45,23 @@
 - Qúa trình gửi gói Request hay Reply sẽ làm tiêu tốn băng thông mạng
 - ARP Cache có dạng giống như 1 bảng tương ứng giữa địa chỉ hardware và địa chỉ IP
 - Có 2 cách đưa các thành phần tương ứng vào bảng ARP Caching
+- Kiểm tra địa chỉ ARP trong máy: `arp -a`
 
 ### 3.1. Static ARP Cache Entries:
 - Đưa vào lần lượt bởi người quản trị
-- Tiến hành cấu hình thử công
+- Tiến hành cấu hình thủ công
+- Sử dụng câu lệnh `arp -s ip_addr mac_addr` để thêm 1 Static ARP entry vào ARP cache
 
 ### 3.2 Dynamic ARP Cache Entries
 - Địa chỉ MAC và IP được đưa vào ARP cache 1 cách tự động bằng phần mềm sau khi hoàn tất phân giải địa chỉ
 - Dynamic Cache sẽ tự động xóa sau 1 khoảng thời gian nhất định. Quá trình naỳ được thực hiện 1 cách hoàn toàn tự động khi sử dụng ARP trong thường là 10 đến 20 phút
+
+## 4. ARP Proxy
+- ARP thiết kế trong thiết bị nằm trong nội mạng, local network area.
+- PC A và B chia cắt bởi 1 router thì được coi như không local với nhau
+- A gửi thông tin đến B, A sẽ không gửi trực tiếp đến B theo địa chỉ lớp 2, mà phải gửi qua router và được coi cách nhau 1 hop ở lớp 3
+
+### Note
+- Router không truyền Broadcast ở lớp DataLink
+
 

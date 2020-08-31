@@ -334,14 +334,16 @@ define( 'DB_COLLATE', '' );
 ![](https://camo.githubusercontent.com/b2aa816034d8dc82a27ee49fa199ffca00a5b1fd/68747470733a2f2f692e6962622e636f2f54764c637630622f53637265656e73686f742d66726f6d2d323032302d30382d32392d31312d33382d30352e706e67)
 
 ## Bước 6.  Database server chặn tất cả port 3306 trừ Webserver 192.168.0.2
+- iptables -A INPUT -p tcp --src www.bizflycloud.com --dport 3306 -j ACCEPT
 - iptables -A INPUT -p tcp -s 192.168.0.2 --dport 3306 -j ACCEPT
 - iptables -A INPUT -p tcp --dport 3306 -j DROP
 
-### (Chưa làm được)
 
 ## Bước 7: General Server không được gọi đến 8.8.8.8
 - Trên linux server gateway
   + iptables -A FORWARD -s 192.168.0.4 -j DROP
 
 ## Bước 8: Linux Server Gateway2 có thể gọi đến Webserver nhưng không được gọi đến Database Server và General Server
+- iptables -A OUTPUT --dst 192.168.0.2 -j ACCEPT
+- iptables -A OUTPUT --dst 192.168.0.0/24 -j DROP
 
