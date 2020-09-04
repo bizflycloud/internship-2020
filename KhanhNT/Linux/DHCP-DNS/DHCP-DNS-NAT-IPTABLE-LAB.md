@@ -74,15 +74,21 @@ host general{
 - `/etc/init.d/procps restart`
 - Thiết lập kết nối
 
-```
-iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
-iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-```
+
+~iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT~
+
+~~iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT~~
+
 
 - ACCEPT gói tin thông qua server từ mạng LAN và cấu hình NAT
 ```
 iptables -A FORWARD -i ens3 -o ens4 -j ACCEPT
-iptables -t nat -A POSTROUTING -o ens4 -s 192.168.0.0/24 -j SNAT --to-source 192.168.17.125
+iptables -t nat -A POSTROUTING -o ens4 -s 
+
+192.168.0.0/24 -j SNAT --to-source 192.168.17.125
+
+hoặc
+
 iptables -t nat -A POSTROUTING -o ens4 -s 192.168.0.0/24 -j MASQUERADE
 ```
 
@@ -341,9 +347,20 @@ define( 'DB_COLLATE', '' );
 
 ## Bước 7: General Server không được gọi đến 8.8.8.8
 - Trên linux server gateway
-  + iptables -A FORWARD -s 192.168.0.4 -j DROP
+  + ~iptables -A FORWARD -s 192.168.0.4 -j DROP~
+- Trên General Server
+  + iptables -A OUTPUT -d 8.8.8.8 -j DROP
+
 
 ## Bước 8: Linux Server Gateway2 có thể gọi đến Webserver nhưng không được gọi đến Database Server và General Server
-- iptables -A OUTPUT --dst 192.168.0.2 -j ACCEPT
-- iptables -A OUTPUT --dst 192.168.0.0/24 -j DROP
+- ~iptables -A OUTPUT --dst 192.168.0.2 -j ACCEPT~
+- ~iptables -A OUTPUT --dst 192.168.0.0/24 -j DROP~
+- iptables -A FORWARD -i ens5 -o ens3 -j DROP
+- iptables -I FORWARD -i ens5 --dst 192.168.0.2 -j ACCEPT
+
+(ens5: GW1 và GW2, ens3: GW1 và mạng 192.168.0.0/24)
+
+## Lưu iptables
+- `iptables-save > /root/myfirewall.conf`
+- `iptables-restore < /root/myfirewall.conf`
 

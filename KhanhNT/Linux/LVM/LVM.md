@@ -4,7 +4,7 @@
 - Công cụ quản lí `phân vùng logic` được tạo và phân bổ từ các ổ đĩa vật lí
 - Dùng để quản lí các thiết bị lưu trữ.
 - Chia không gian đĩa cứng thành các Logical Volume từ đó giúp cho việc thay đổi kích thước trở nên dễ dàng.
-- Dễ dàng khi mở rộng phân vùng ra lớn hơn
+- Dễ dàng khi mở rộng phân vùng ra lớn hơn.
 
 ## 2.  Khái niệm liên quan: 
  - __Physical volume (PV)__: 
@@ -164,4 +164,7 @@
 #### 4.5.3 Xóa Physical Volume
 - `pvremove /dev/sdb3`
 
-Tài liệu tham khảo: https://github.com/hocchudong/Logical-Volume-Manager-LVM-
+Tài liệu tham khảo: 
+- https://github.com/hocchudong/Logical-Volume-Manager-LVM-
+- https://github.com/khanhnt99/thuctap012017/tree/master/TVBO/docs/LVM
+                    
