@@ -96,9 +96,11 @@ corgi@ubuntu:~$ sudo pvs
   /dev/sdb   LVM_VG_Stripe lvm2 a--    1.08g 928.00m
   /dev/sdc   LVM_VG_Stripe lvm2 a--  992.00m 816.00m
   /dev/sdd   LVM_VG_Stripe lvm2 a--    1.02g 864.00m
+```
 
 
 **Các PV chia đều nhau để tạo Logical Volume có dung lượng `512MB`**.
+
 
 __So sánh cơ chế Linear và Stripe__
 
