@@ -13,6 +13,8 @@
 ## 3. Sử dụng Rsync
 - Cài đặt
   + `sudo apt-get install rsync`
+- Cú pháp 
+  + `rsync options source destination`
 - Đồng bộ hóa trên local 
 
 ```
@@ -64,7 +66,7 @@ a.txt  b.txt
 root@ubuntu:/home# 
 
 ```
-- Hiển thị tiến trình khi transfer dữ liệu rsync
+- Hiển thị tiến trình khi transfer dữ liệu `rsync`
 
 ```
 root@ubuntu:~# rsync -avz --progress dir2/ root@192.168.17.44:/root
@@ -99,4 +101,17 @@ sent 66 bytes  received 166 bytes  35.69 bytes/sec
 total size is 0  speedup is 0.00
 root@ubuntu:~# 
 ```
+
+- `Rsync qua SSH
+  + `rsync -avzhe ssh root@x.x.x.x:/root/install.log /tmp/`
+  + Copy từ Local lên Remote server SSH
+     - `rsync -avzhe ssh --progress /home/folder root@x.x.x.x:/root/folder`
+
+- Cấu hình băng thông qua truyền tải:
+  + `rsync --bwlimit=100 -avzhe ssh /var/lib/rpm root@x.x.x.x:/root/tmp`
+
+
 __(192.168.17.50: ip server)__
+
+**Tài liệu tham khảo**
+- https://viblo.asia/p/rsync-command-dong-bo-du-lieu-tren-linux-djeZ1R7YlWz
