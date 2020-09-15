@@ -42,4 +42,16 @@
 
 ![](https://raw.githubusercontent.com/khanhnt99/thuctap012017/master/TamNT/SSH/images/1.2.png)
 - SSH sử dụng mã hóa bất đối xứng trong quá trình trao đổi key ban đầu để thiết lập mã hóa đối xứng.
-- Server gửi key pair và Public key cho client, client sẽ tạo **Mã hóa đối xứng** và được mã hóa bằng Public key sau đó gửi lại cho server, server dùng private key để giải mã. 
+- Server gửi key pair và Public key cho client, client sẽ tạo **Mã hóa đối xứng** và được mã hóa bằng Public key sau đó gửi lại cho server, server dùng private key để giải mã.
+
+### 3.3 Hashing-Hàm băm
+- Hàm mã hóa băm là phương pháp tạo ra 1 **"signature"** hoặc tóm tắt thông tin.
+- Không có hàm giải ngược, đảm báo tính duy nhất.
+- Được sử dụng xác định tính toàn vẹn của dữ liệu và xác thực kết nối. 
+- Hàm băm chính được sử dụng trong SSH là **HMAC**, hoặc hàm băm dựa trên mã xác thực.
+- Mỗi bản tin được gửi sau khi mã hóa chứa 1 mã MAC để bên nhận xác nhận toàn vẹn gói tin.
+- Mã MAC được tính bằng cách kết hợp key đối xứng và session key, thứ tự gói trong bản tin, nội dung bản tin.
+
+**Tài liệu tham khảo**
+- https://github.com/khanhnt99/thuctap012017/blob/master/TamNT/SSH/docs/1.Tim_hieu_SSH.md
+
