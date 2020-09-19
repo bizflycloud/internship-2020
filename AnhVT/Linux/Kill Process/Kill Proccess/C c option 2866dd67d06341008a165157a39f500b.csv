@@ -1,5 +1,0 @@
-﻿Ký hiệu số,Tên,Mô tả
-1,SIGHUP,"Tiến hành "" Hang up "" - treo tiến trình"
-2,SIGINT,Tiến hành gián đoạn tín hiệu ( hoặc có thể gửi trực tiếp thông qua tổ hợp Ctrl + C
-15,SIGTERM,Tiến hành gửi tín hiệu ngừng tiến trình
-9,SIGKILL,"Gần giống như SIGTERM nhưng ở đây là bắt buộc ( force ), được sử dụng trong một số trường hợp khi tiến trình bị treo"
