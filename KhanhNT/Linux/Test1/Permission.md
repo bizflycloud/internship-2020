@@ -29,6 +29,7 @@ o: người khác
 ## 3. Lệnh chmod
 - Cho phép thay đổi quyền (permission) cho 1 file hayb folder.
 - Phân quyền theo chế độ số.
+
 | Số | Loại quyền | Kí hiệu |
 |----|------------|---------|
 |0|Không cho phép|---|
