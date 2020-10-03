@@ -204,12 +204,46 @@ MASQUERADE  all  --  192.168.0.0/24       anywhere
 
 ## Bước 3: Cài đặt Galara Clutser trên 3 máy DataBase
 
--`sudo apt-get update`
-- `sudo apt-get install mysql-server`
-- `sudo apt-get install galera rsync`
-- `vim /etc/mysql/mysql.conf.d/mysqld.cnf`
-   + comment dòng bind-address=127.0.0.1
-- `vim /etc/mysql/conf.d/galera.cnf`
+### Cài đặt trên mỗi DB4,5,6
+
+- `sudo apt-key adv --keyserver keyserver.ubuntu.com --recv BC19DDBA`
+
+```
+root@ubuntu:~# apt-key adv --keyserver keyserver.ubuntu.com --recv BC19DDBA
+Executing: /tmp/tmp.0HXUylkjaM/gpg.1.sh --keyserver
+keyserver.ubuntu.com
+--recv
+BC19DDBA
+gpg: requesting key BC19DDBA from hkp server keyserver.ubuntu.com
+gpg: key BC19DDBA: public key "Codership Oy <info@galeracluster.com>" imported
+gpg: Total number processed: 1
+gpg:               imported: 1  (RSA: 1)
+```
+
+- `sudo vim /etc/apt/sources.list.d/galera.list`
+
+```
+deb http://releases.galeracluster.com/mysql-wsrep-5.6/ubuntu xenial main
+deb http://releases.galeracluster.com/galera-3/ubuntu xenial main
+
+```
+
+- `sudo vim /etc/apt/preferences.d/galera.pref`
+
+```
+# Prefer Codership repository
+Package: *
+Pin: origin releases.galeracluster.com
+Pin-Priority: 1001
+```
+
+- `sudo apt-get update`
+
+- `sudo apt-get install galera-3 galera-arbitrator-3 mysql-wsrep-5.6`
+
+- `sudo apt-get install rsync`
+
+- `sudo vim /etc/mysql/conf.d/galera.cnf`
 
 #### DB4: 
 
@@ -292,9 +326,306 @@ wsrep_node_address="192.168.0.6"
 wsrep_node_name="node-6"
 ```
 
-https://www.digitalocean.com/community/tutorials/how-to-configure-a-galera-cluster-with-mysql-5-6-on-ubuntu-16-04
+- `systemctl stop mysql`
+
+- `vim /etc/mysql/mysql.conf.d/mysqld.cnf`
+
+```
+[mysqld]
+pid-file        = /var/run/mysqld/mysqld.pid
+socket          = /var/run/mysqld/mysqld.sock
+datadir         = /var/lib/mysql
+log-error       = /var/log/mysql/error.log
+# Disabling symbolic-links is recommended to prevent assorted security risks
+bind-address    = 0.0.0.0 # mysql bind duoc den moi dia chi IP
+symbolic-links=0
+```
+
+#### Trên DB4:
+- `/etc/init.d/mysql start --wsrep-new-cluster`
+
+#### Trên DB5 và DB6:
+- `systemctl restart mysql`
+
+```
+root@ubuntu:~# mysql -u root -p -e "SHOW STATUS LIKE 'wsrep_cluster_size'"
+Enter password: 
++--------------------+-------+
+| Variable_name      | Value |
++--------------------+-------+
+| wsrep_cluster_size | 3     |
++--------------------+-------+
+```
 
 
 
+## Bước 4: Tạo User cho từng Wordpress Server trên DataBase Cluster
+### Vì cụm DataBase đã đồng bộ nên ta chỉ cần thực hiện trên 1 DataBase => Ở đây sử dụng DB4
 
+- mysql -u root -p
+
+```
+mysql> CREATE DATABASE wordpress1;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> CREATE USER 'wordpressuser1'@'192.168.0.1' IDENTIFIED BY 'Password@123';
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpressuser1'@'192.168.0.1';
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.04 sec)
+```
+
+```
+mysql> CREATE DATABASE wordpress2;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> CREATE USER 'wordpressuser2'@'192.168.0.2' IDENTIFIED BY 'Password@123';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpressuser2'@'192.168.0.2';
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.03 sec)
+```
+
+```
+mysql> CREATE DATABASE wordpress3;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> CREATE USER 'wordpressuser3'@'192.168.0.3' IDENTIFIED BY 'Password@123';
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpressuser3'@'192.168.0.3';
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.01 sec)
+```
+- Dùng `select * from mysql.user;` trên cả 3 DB để check => Xuất hiện user trên cả 3 DB là đã thành công.
+
+## Bước 5: Cài đặt keepalive cho 3 máy Database để WP có thể truy cập đến cụm qua 1 IP duy nhất.
+
+- `apt-get install keepalived`
+
+
+
+```
+root@ubuntu:~# echo "net.ipv4.ip_nonlocal_bind=1" >> /etc/sysctl.conf 
+root@ubuntu:~# vim /etc/sysctl.conf                                                                                                            
+root@ubuntu:~# sysctl -p
+net.ipv4.ip_nonlocal_bind = 1
+```
+
+- `vim /etc/keepalived/keepalived.conf`
+
+#### DB4
+
+```
+vrrp_script chk_haproxy {
+        script "killall -0 haproxy"
+        interval 2
+        weight 2
+}
+
+vrrp_instance VI_1 {
+        interface ens3
+        state MASTER
+        virtual_router_id 51
+        priority 101
+        virtual_ipaddress {
+            192.168.0.11
+        }
+        track_script {
+            chk_haproxy
+        }
+}
+
+```
+
+#### DB5
+
+```
+vrrp_script chk_haproxy {
+        script "killall -0 haproxy"
+        interval 2
+        weight 2
+}
+
+vrrp_instance VI_1 {
+        interface ens3
+        state BACKUP
+        virtual_router_id 51
+        priority 100
+        virtual_ipaddress {
+            192.168.0.11
+        }
+        track_script {
+            chk_haproxy
+        }
+}
+```
+
+#### DB6
+
+```
+vrrp_script chk_haproxy {
+        script "killall -0 haproxy"
+        interval 2
+        weight 2
+}
+
+vrrp_instance VI_1 {
+        interface ens3
+        state BACKUP
+        virtual_router_id 51
+        priority 99
+        virtual_ipaddress {
+            192.168.0.11
+        }
+        track_script {
+            chk_haproxy
+        }
+}
+```
+- `service keepalived restart `
+- Check:
+
+```
+root@ubuntu:~# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: ens3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 50:19:00:04:00:00 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.4/24 brd 192.168.0.255 scope global ens3
+       valid_lft forever preferred_lft forever
+    inet 192.168.0.11/32 scope global ens3
+       valid_lft forever preferred_lft forever
+    inet6 fe80::5219:ff:fe04:0/64 scope link 
+       valid_lft forever preferred_lft forever
+3: ens4: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 50:19:00:04:00:01 brd ff:ff:ff:ff:ff:ff
+4: ens5: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 50:19:00:04:00:02 brd ff:ff:ff:ff:ff:ff
+```
+
+## Bước 6: Connect đến cụm DataBase Cluster từ Wordpress
+### Cấu hình trên WP1, WP2, WP3
+- `apt-get install mysql-client`
+
+```
+root@ubuntu:~# mysql -u wordpressuser1 -h 192.168.0.11 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 4
+Server version: 5.6.48 MySQL Wsrep Server (GPL), wsrep_25.30
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> exit
+Bye
+```
+
+## Bước 7: Cài đặt Wordpress trên WP1, WP2, WP3
+
+- `apt-get install nginx php-fpm php-mysql`
+
+- `vim /etc/php/7.0/fpm/php.ini `
+
+`cgi.fix_pathinfo=0`
+
+## Bước 8: Cài đặt NFS đồng bộ file cấu hình giữa 3 WP
+- Trên WP1: 
+    + `apt-get install nfs-kernel-server -y`
+    + `vim /etc/exports`
+
+```
+# /etc/exports: the access control list for filesystems which may be exported
+#               to NFS clients.  See exports(5).
+#
+# Example for NFSv2 and NFSv3:
+# /srv/homes       hostname1(rw,sync,no_subtree_check) hostname2(ro,sync,no_subtree_check)
+#
+# Example for NFSv4:
+# /srv/nfs4        gss/krb5i(rw,sync,fsid=0,crossmnt,no_subtree_check)
+# /srv/nfs4/homes  gss/krb5i(rw,sync,no_subtree_check)
+#
+
+/var/www/html 192.168.0.2/24(rw)
+/var/www/html 192.168.0.3/24(rw)
+/etc/nginx/ 192.168.0.2/24(rw)
+/etc/nginx/ 192.168.0.3/24(rw)
+
+#/var/www/html/ 192.168.0.2/24(rw)
+```
+
+- Trên WP2,3: 
+    + `apt-get install nfs-common -y`
+    + `mount 192.168.0.1:/etc/nginx/ /etc/nginx/`
+
+## Bước 9: Cài đặt Wordpress:
+
+- `wget http://wordpress.org/latest.tar.gz`
+- `tar xzvf latest.tar.gz`
+- `cd /wordpress`
+- `nano wp-config.php`
+
+```
+define( 'DB_NAME', 'wordpress1' );
+
+/** MySQL database username */
+define( 'DB_USER', 'wordpressuser1' );
+
+/** MySQL database password */
+define( 'DB_PASSWORD', 'Password@123' );
+
+/** MySQL hostname */
+define( 'DB_HOST', '192.168.0.11' );
+
+/** Database Charset to use in creating database tables. */
+define( 'DB_CHARSET', 'utf8' );
+
+/** The Database Collate type. Don't change this if in doubt. */
+define( 'DB_COLLATE', '' );
+
+/**#@+
+ * Authentication Unique Keys and Salts.
+ *
+ * Change these to different unique phrases!
+ * You can generate these using the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}
+ * You can change these at any point in time to invalidate all existing cookies. This will force all users to have to log in again.
+ *
+ * @since 2.6.0
+ */
+define('AUTH_KEY',         '9Bi*f&g|nXRB7--Prn+,@3. ohR]k@)gvaE|1Ja/)eVqH:|k4!v7}7JB^a`CH|w)');
+define('SECURE_AUTH_KEY',  'X-GTT Qouz&{|IAn(V2D)Uj`2~*V[QF0J#v+MX8JTbH;RoB6%k+*xxpu%>3$OPS-');
+define('LOGGED_IN_KEY',    '.G[.I@LSwNU5LDq7=^QA6)KXvKfBU8]+tRgSY/IjUC,kG]d|L~n>-ML17t_+s?7n');
+define('NONCE_KEY',        'Mc#;2^ZBOVD6usf/=~:#kgK3Kub4V4F{sS6+qU=R7y]e% 4p%J[.y2|:ZY*;si|+');
+define('AUTH_SALT',        '.A#R< ue486oe0U!`qq.pz5Eg?PM=;u_R.M(j[,ld0|(b}tB<#v{IuE7UXV/zKV/');
+define('SECURE_AUTH_SALT', '#pEX6i3HaSCO30@z-o>p`e_TBvqa@t>yiC&&i+w( t~pP*M;&CTEI9(mG|dOU.I2');
+define('LOGGED_IN_SALT',   'uuWg5ILnl5Wrh,|S-XoT+kK31&5aW6&oA+V-W7{n^;XR}61;5q);hJuDV6fCe>-;');
+define('NONCE_SALT',       '(XCm8!@;v.Q1NMJ1;GZu{?$r2D6M_NR-frikYGpzrFIQz?#c,aRo#ljF|DWSpwJ*');
+```
+#### Làm tương tự với WP2 và WP3
+
+
+__Docs:__
+
+- https://www.digitalocean.com/community/tutorials/how-to-configure-a-galera-cluster-with-mysql-5-6-on-ubuntu-16-04
+- https://github.com/hoangdh/ghichep-database/tree/master/Galera_on_Ubuntu
+- https://github.com/khanhnt99/internship-2020/blob/master/KhanhNT/Linux/Wordpress/Wordpress-iptables.md
+- https://github.com/hocchudong/thuctap012017/blob/master/XuanSon/Storage/DAS-NAS-SAN_va_iSCSI-protocol.md#2.2
 
