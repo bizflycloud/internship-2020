@@ -337,7 +337,7 @@ socket          = /var/run/mysqld/mysqld.sock
 datadir         = /var/lib/mysql
 log-error       = /var/log/mysql/error.log
 # Disabling symbolic-links is recommended to prevent assorted security risks
-bind-address    = 0.0.0.0 # mysql bind duoc den moi dia chi IP
+bind-address    = 0.0.0.0 # mysql bind duoc den tat ca dia chi IP
 symbolic-links=0
 ```
 
@@ -365,13 +365,11 @@ Enter password:
 - mysql -u root -p
 
 ```
-mysql> CREATE DATABASE wordpress1;
-Query OK, 1 row affected (0.04 sec)
 
-mysql> CREATE USER 'wordpressuser1'@'192.168.0.1' IDENTIFIED BY 'Password@123';
+mysql> CREATE USER 'wp'@'192.168.0.1' IDENTIFIED BY 'Password@123';
 Query OK, 0 rows affected (0.03 sec)
 
-mysql> GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpressuser1'@'192.168.0.1';
+mysql> GRANT ALL PRIVILEGES ON wordpress.* TO 'wp'@'192.168.0.1';
 Query OK, 0 rows affected (0.03 sec)
 
 mysql> FLUSH PRIVILEGES;
@@ -379,13 +377,11 @@ Query OK, 0 rows affected (0.04 sec)
 ```
 
 ```
-mysql> CREATE DATABASE wordpress2;
-Query OK, 1 row affected (0.02 sec)
 
-mysql> CREATE USER 'wordpressuser2'@'192.168.0.2' IDENTIFIED BY 'Password@123';
+mysql> CREATE USER 'wp'@'192.168.0.2' IDENTIFIED BY 'Password@123';
 Query OK, 0 rows affected (0.02 sec)
 
-mysql> GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpressuser2'@'192.168.0.2';
+mysql> GRANT ALL PRIVILEGES ON wordpress.* TO 'wp'@'192.168.0.2';
 Query OK, 0 rows affected (0.03 sec)
 
 mysql> FLUSH PRIVILEGES;
@@ -393,13 +389,11 @@ Query OK, 0 rows affected (0.03 sec)
 ```
 
 ```
-mysql> CREATE DATABASE wordpress3;
-Query OK, 1 row affected (0.03 sec)
 
-mysql> CREATE USER 'wordpressuser3'@'192.168.0.3' IDENTIFIED BY 'Password@123';
+mysql> CREATE USER 'wp'@'192.168.0.3' IDENTIFIED BY 'Password@123';
 Query OK, 0 rows affected (0.04 sec)
 
-mysql> GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpressuser3'@'192.168.0.3';
+mysql> GRANT ALL PRIVILEGES ON wordpress.* TO 'wp'@'192.168.0.3';
 Query OK, 0 rows affected (0.03 sec)
 
 mysql> FLUSH PRIVILEGES;
@@ -521,7 +515,7 @@ root@ubuntu:~# ip a
 - `apt-get install mysql-client`
 
 ```
-root@ubuntu:~# mysql -u wordpressuser1 -h 192.168.0.11 -p
+root@ubuntu:~# mysql -u wp -h 192.168.0.11 -p
 Enter password: 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 4
@@ -539,7 +533,7 @@ mysql> exit
 Bye
 ```
 
-## Bước 7: Cài đặt Wordpress trên WP1, WP2, WP3
+## Bước 7: Cài đặt php trên WP1, WP2, WP3
 
 - `apt-get install nginx php-fpm php-mysql`
 
@@ -547,47 +541,48 @@ Bye
 
 `cgi.fix_pathinfo=0`
 
-## Bước 8: Cài đặt NFS đồng bộ file cấu hình giữa 3 WP
-- Trên WP1: 
-    + `apt-get install nfs-kernel-server -y`
-    + `vim /etc/exports`
+
+
+## Bước 9: Cài đặt Wordpress trên 3 máy WP1, WP2, WP3:
+
+
+#### Trên máy WP1:
+
+- Thực hiện tạo database cho user `wp`:
 
 ```
-# /etc/exports: the access control list for filesystems which may be exported
-#               to NFS clients.  See exports(5).
-#
-# Example for NFSv2 and NFSv3:
-# /srv/homes       hostname1(rw,sync,no_subtree_check) hostname2(ro,sync,no_subtree_check)
-#
-# Example for NFSv4:
-# /srv/nfs4        gss/krb5i(rw,sync,fsid=0,crossmnt,no_subtree_check)
-# /srv/nfs4/homes  gss/krb5i(rw,sync,no_subtree_check)
-#
+mysql> create database wordpress;
+Query OK, 1 row affected (0.03 sec)
 
-/var/www/html 192.168.0.2/24(rw)
-/var/www/html 192.168.0.3/24(rw)
-/etc/nginx/ 192.168.0.2/24(rw)
-/etc/nginx/ 192.168.0.3/24(rw)
-
-#/var/www/html/ 192.168.0.2/24(rw)
+mysql> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| wordpress          |
++--------------------+
+2 rows in set (0.00 sec)
 ```
 
-- Trên WP2,3: 
-    + `apt-get install nfs-common -y`
-    + `mount 192.168.0.1:/etc/nginx/ /etc/nginx/`
-
-## Bước 9: Cài đặt Wordpress:
+#### Note: vì cùng thuộc user `wp` nên trên WP2 và WP3 cũng xuất hiện databases wordpress
 
 - `wget http://wordpress.org/latest.tar.gz`
 - `tar xzvf latest.tar.gz`
 - `cd /wordpress`
-- `nano wp-config.php`
+- `mkdir -p /var/www/example.com`
+- `cp -r ~/wordpress/* /var/www/example.com/`
+- `cd /var/www/example.com`
+- `chown -R www-data:www-data *`
+- `usermod -a -G www-data root`
+- `chmod -R g+rw /var/www/example.com`
+- `nano /var/www/example/wp-config.php`
 
-```
-define( 'DB_NAME', 'wordpress1' );
+ ```
+define( 'DB_NAME', 'wordpress' );
 
 /** MySQL database username */
-define( 'DB_USER', 'wordpressuser1' );
+define( 'DB_USER', 'wp' );
 
 /** MySQL database password */
 define( 'DB_PASSWORD', 'Password@123' );
@@ -619,13 +614,174 @@ define('SECURE_AUTH_SALT', '#pEX6i3HaSCO30@z-o>p`e_TBvqa@t>yiC&&i+w( t~pP*M;&CTE
 define('LOGGED_IN_SALT',   'uuWg5ILnl5Wrh,|S-XoT+kK31&5aW6&oA+V-W7{n^;XR}61;5q);hJuDV6fCe>-;');
 define('NONCE_SALT',       '(XCm8!@;v.Q1NMJ1;GZu{?$r2D6M_NR-frikYGpzrFIQz?#c,aRo#ljF|DWSpwJ*');
 ```
-#### Làm tương tự với WP2 và WP3
+
+## Bước 8: Cài đặt NFS đồng bộ file cấu hình giữa 3 WP
+
+#### Mục tiêu:
+- Cần đồng bộ giữa các máy:
++ ` /var/www/example.com`
++ `/etc/nginx/`
+
+- Trên WP1: 
+    + `apt-get install nfs-kernel-server -y`
+    + `vim /etc/exports`
+
+```
+# /etc/exports: the access control list for filesystems which may be exported
+#               to NFS clients.  See exports(5).
+#
+# Example for NFSv2 and NFSv3:
+# /srv/homes       hostname1(rw,sync,no_subtree_check) hostname2(ro,sync,no_subtree_check)
+#
+# Example for NFSv4:
+# /srv/nfs4        gss/krb5i(rw,sync,fsid=0,crossmnt,no_subtree_check)
+# /srv/nfs4/homes  gss/krb5i(rw,sync,no_subtree_check)
+#
+
+/var/www/ 192.168.0.2/24(rw,insecure,sync,no_subtree_check,no_root_squash)
+/var/www/ 192.168.0.3/24(rw,insecure,sync,no_subtree_check,no_root_squash)
+/etc/nginx/ 192.168.0.2/24(rw,insecure,sync,no_subtree_check,no_root_squash)
+/etc/nginx/ 192.168.0.3/24(rw,insecure,sync,no_subtree_check,no_root_squash)
 
 
-__Docs:__
 
+#/var/www/html/ 192.168.0.2/24(rw)
+
+:wq
+
+```
+
+#### Checks
+
+```
+root@ubuntu:~# exportfs -arv
+exportfs: /etc/exports [2]: Neither 'subtree_check' or 'no_subtree_check' specified for export "192.168.0.2/24:/var/www/example.com/".
+  Assuming default behaviour ('no_subtree_check').
+  NOTE: this default has changed since nfs-utils version 1.0.x
+
+exportfs: /etc/exports [3]: Neither 'subtree_check' or 'no_subtree_check' specified for export "192.168.0.3/24:/var/www/".
+  Assuming default behaviour ('no_subtree_check').
+  NOTE: this default has changed since nfs-utils version 1.0.x
+
+exportfs: /etc/exports [4]: Neither 'subtree_check' or 'no_subtree_check' specified for export "192.168.0.2/24:/etc/nginx/".
+  Assuming default behaviour ('no_subtree_check').
+  NOTE: this default has changed since nfs-utils version 1.0.x
+
+exportfs: /etc/exports [5]: Neither 'subtree_check' or 'no_subtree_check' specified for export "192.168.0.3/24:/etc/nginx/".
+  Assuming default behaviour ('no_subtree_check').
+  NOTE: this default has changed since nfs-utils version 1.0.x
+
+exporting 192.168.0.2/24:/etc/nginx
+exporting 192.168.0.3/24:/etc/nginx
+exporting 192.168.0.2/24:/var/www/
+exporting 192.168.0.3/24:/var/www/
+```
+
+- Trên WP2,3: 
+    + `apt-get install nfs-common -y`
+    + `mount 192.168.0.1:/etc/nginx/ /etc/nginx/`
+
+```
+root@ubuntu:~# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev            991M     0  991M   0% /dev
+tmpfs           200M  8.1M  192M   5% /run
+/dev/sda1        62G  1.5G   61G   3% /
+tmpfs          1000M     0 1000M   0% /dev/shm
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs          1000M     0 1000M   0% /sys/fs/cgroup
+tmpfs           200M     0  200M   0% /run/user/0
+root@ubuntu:~# mount 192.168.0.1:/etc/nginx/ /etc/nginx/
+root@ubuntu:~# df -h
+Filesystem              Size  Used Avail Use% Mounted on
+udev                    991M     0  991M   0% /dev
+tmpfs                   200M  8.1M  192M   5% /run
+/dev/sda1                62G  1.5G   61G   3% /
+tmpfs                  1000M     0 1000M   0% /dev/shm
+tmpfs                   5.0M     0  5.0M   0% /run/lock
+tmpfs                  1000M     0 1000M   0% /sys/fs/cgroup
+tmpfs                   200M     0  200M   0% /run/user/0
+192.168.0.1:/etc/nginx   62G  1.5G   61G   3% /etc/nginx
+root@ubuntu:~# mount 192.168.0.1:/var/www/ /var/www/
+root@ubuntu:~# df -h
+Filesystem              Size  Used Avail Use% Mounted on
+udev                    991M     0  991M   0% /dev
+tmpfs                   200M  8.1M  192M   5% /run
+/dev/sda1                62G  1.5G   61G   3% /
+tmpfs                  1000M     0 1000M   0% /dev/shm
+tmpfs                   5.0M     0  5.0M   0% /run/lock
+tmpfs                  1000M     0 1000M   0% /sys/fs/cgroup
+tmpfs                   200M     0  200M   0% /run/user/0
+192.168.0.1:/etc/nginx   62G  1.5G   61G   3% /etc/nginx
+192.168.0.1:/var/www     62G  1.5G   61G   3% /var/www
+```
+
+#### Tạo kết nối từ lúc khởi động cumj:
+- `vim /etc/fstab`
+
+```
+LABEL=cloudimg-rootfs   /        ext4   defaults        0 0
+
+192.168.0.1:/etc/nginx /etc/nginx nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0
+192.168.0.1:/var/www /var/www nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0
+
+```
+
+
+### Sử dụng `lsyncd` đồng bộ WP 
+- `sudo apt-get update`
+- `sudo apt-get install lsyncd`
+- `mkdir /var/log/lsyncd`
+- `touch /var/log/lsyncd/lsyncd.{log,status}`
+-  `nano /etc/lsyncd/lsyncd.conf.lua`
+
+
+```
+settings {
+logfile = "/var/log/lsyncd/lsyncd.log",
+statusFile = "/var/log/lsyncd/lsyncd-status.log",
+statusInterval = 10,
+}
+
+
+
+sync {
+default.rsyncssh,
+source="/var/www/",
+host="192.168.0.1",
+targetdir="/var/www/",
+source="/etc/nginx/",
+targetdir="/etc/nginx",
+delay = 1,
+rsync = {
+compress = true,
+acls = true,
+--delete = false, 
+verbose = true,
+owner = true,
+group = true,
+perms = true,
+rsh = "/usr/bin/ssh -p 22 -o StrictHostKeyChecking=no",
+}
+}
+
+```
+
+
+__Docs__:
 - https://www.digitalocean.com/community/tutorials/how-to-configure-a-galera-cluster-with-mysql-5-6-on-ubuntu-16-04
 - https://github.com/hoangdh/ghichep-database/tree/master/Galera_on_Ubuntu
+
 - https://github.com/khanhnt99/internship-2020/blob/master/KhanhNT/Linux/Wordpress/Wordpress-iptables.md
-- https://github.com/hocchudong/thuctap012017/blob/master/XuanSon/Storage/DAS-NAS-SAN_va_iSCSI-protocol.md#2.2
+
+- https://github.com/khanhnt99/internship-2020/blob/master/KhanhNT/Linux/HAProxy-Keepalive/Cluster-WS-lab.md
+
+- https://laptrinhx.com/lam-the-nao-de-thiet-lap-mot-nfs-gan-ket-tren-ubuntu-18-04-3852007090/
+
+- https://www.percona.com/doc/percona-xtradb-cluster/5.7/howtos/crash-recovery.html
+
+- https://www.percona.com/blog/2014/09/01/galera-replication-how-to-recover-a-pxc-cluster//
+
+- https://serverfault.com/questions/212178/chown-on-a-mounted-nfs-partition-gives-operation-not-permitted
+
 
