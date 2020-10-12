@@ -736,6 +736,8 @@ LABEL=cloudimg-rootfs   /        ext4   defaults        0 0
 -  `nano /etc/lsyncd/lsyncd.conf.lua`
 
 
+#### TH 1 Server 
+
 ```
 settings {
 logfile = "/var/log/lsyncd/lsyncd.log",
@@ -767,6 +769,149 @@ rsh = "/usr/bin/ssh -p 22 -o StrictHostKeyChecking=no",
 
 ```
 
+#### TH 2 server
+
+```
+serverList = {
+ "192.168.0.2",:
+ "192.168.0.3",
+}
+
+
+-- be carefull non of them is a parent directory of another
+sourceList =
+{
+        "/var/www/",
+        "/etc/nginx",
+}
+
+for _, server in ipairs( serverList ) do
+  for _, source in ipairs( sourceList ) do
+    sync{
+          default.rsyncssh,
+          delete = 'running',
+          source=source,
+          host=server,
+          targetdir=source,
+          delay = 0,
+          rsync     = {
+              archive  = true,
+              compress = true,
+              _extra   = {"--omit-dir-times","-e ssh -i /home/lsync/.ssh/id_rsa"}
+                      }
+        }
+
+  end
+end
+```
+
+```
+settings {
+        logfile = "/var/log/lsyncd/lsyncd.log",
+        statusFile = "/var/log/lsyncd/lsyncd.status"
+}
+serverList = {
+ "192.168.0.2",
+ "192.168.0.3",
+}
+
+
+-- be carefull non of them is a parent directory of another
+sourceList =
+{
+        "/var/www/",
+        "/etc/nginx",
+}
+
+for _, server in ipairs( serverList ) do
+  for _, source in ipairs( sourceList ) do
+    sync{
+          default.rsyncssh,
+          delete = 'running',
+          source=source,
+          host=server,
+          targetdir=source,
+          delay = 1,
+          rsync     = {
+              archive  = true,
+              compress = true,
+              perms = false, -- Keep the permissions
+              owner = false, -- Keep the owner
+              _extra   = {"/usr/bin/ssh -l root /root/.ssh/id_rsa -o StrictHostKeyChecking=no"}
+                      }
+        }
+
+  end
+end
+```
+
+```
+settings {
+        logfile = "/var/log/lsyncd/lsyncd.log",
+        statusFile = "/var/log/lsyncd/lsyncd.status"
+}
+
+sync{
+          default.rsync,
+          source="/etc/nginx/",
+          target="root@192.168.0.2:/etc/nginx/",
+          delay = 1,
+          rsync     = {
+              archive  = true,
+              compress = true,
+              perms = false, -- Keep the permissions
+              owner = false, -- Keep the owner
+              rsh = "/usr/bin/ssh -l root -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no"
+                      }
+     }
+
+sync{
+          default.rsync,
+          source="/etc/nginx/",
+          target="root@192.168.0.3:/etc/nginx/",
+          delay = 1,
+          rsync     = {
+              archive  = true,
+              compress = true,
+              perms = false, -- Keep the permissions
+              owner = false, -- Keep the owner
+              rsh = "/usr/bin/ssh -l root -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no"
+                      }
+     } 
+
+sync{
+          default.rsync,
+          source="/var/www/",
+          target="root@192.168.0.2:/var/www/",
+          delay = 1,
+          rsync     = {
+              archive  = true,
+              compress = true,
+              perms = false, -- Keep the permissions
+              owner = false, -- Keep the owner
+              rsh = "/usr/bin/ssh -l root -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no"
+                      }
+     }
+
+sync{
+          default.rsync,
+          source="/var/www/",
+          target="root@192.168.0.3:/var/www/",
+          delay = 1,
+          rsync     = {
+              archive  = true,
+              compress = true,
+              perms = false, -- Keep the permissions
+              owner = false, -- Keep the owner
+              rsh = "/usr/bin/ssh -l root -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no"
+                      }
+     }
+```
+
+
+- Enable or Disable Services in Ubuntu Systemd/Upstart:
+  + `systemctl enable lsyncd`
+  + `systemctl enable keepalived`
 
 __Docs__:
 - https://www.digitalocean.com/community/tutorials/how-to-configure-a-galera-cluster-with-mysql-5-6-on-ubuntu-16-04
@@ -783,5 +928,7 @@ __Docs__:
 - https://www.percona.com/blog/2014/09/01/galera-replication-how-to-recover-a-pxc-cluster//
 
 - https://serverfault.com/questions/212178/chown-on-a-mounted-nfs-partition-gives-operation-not-permitted
+
+- https://groups.google.com/g/lsyncd/c/zzCbWGLssco
 
 
