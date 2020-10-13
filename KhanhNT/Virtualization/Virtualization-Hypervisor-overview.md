@@ -15,7 +15,7 @@
 
 ## 2. Virtualization
 ### 2.1 Khái niệm
-- `Virtualization` (ảo hóa): là công nghệ để tạo ra tầng trung gian giữa hệ thống phần cứng của máy tính và phần mềm cảu nó.
+- `Virtualization` (ảo hóa): là công nghệ để tạo ra tầng trung gian giữa hệ thống phần cứng của máy tính và phần mềm của nó.
 - Ý tưởng của ảo hóa là `từ một máy tính vật lí đơn lẻ có thể tạo nhiều máy ảo độc lập`.
 - Mỗi `máy ảo` đều có một thiết lập nguồn riêng rẽ, `hệ điều hành riêng` và `các ứng dụng riêng`.
 - Các loại ảo hóa: 
@@ -65,9 +65,6 @@
 
 - Trong `paravirtualization`, hypervisor sẽ cung cấp `hypercall interface`.
 - Guest OS sẽ được chỉnh sửa kernel code để thay thế  `non-virtualizable instruction` bằng các hypercall.
-
-![](https://raw.githubusercontent.com/ImKifu/thuctapsinh/master/HungNK/Basic_Linux_Command/Picture/aohoa5.png)
-
 - Guest OS bị sửa đổi để có thể nằm ở Ring 0
 
 ![](https://github.com/ImKifu/thuctapsinh/raw/master/HungNK/Basic_Linux_Command/Picture/aohoa6.png)
@@ -86,7 +83,7 @@
 - Là 1 chương trình phần mềm quản lí 1 hoặc nhiều máy ảo (VM).
 - Được sử dụng để tạo, xóa, dừng, reset các máy ảo.
 - Các `hypervisor` cho phép mỗi VM hoặc guest truy cập vào lớp tài nguyên phần cứng vật lí phía dưới (CPU,RAM,Storage).
-- Giới hạn tài nguyên hệ thống mà mỗi máy ảo sử dụng để đảm bảo cho nhiêu máy ảo sử dụng đồng thời trên 1 hệ thống.
+- Giới hạn tài nguyên hệ thống mà mỗi máy ảo sử dụng để đảm bảo cho nhiều máy ảo sử dụng đồng thời trên 1 hệ thống.
 
 ### 3.2 Các loại Hypervisor
 - Có 2 loại `hypervisor` là `Native(Bare metal)` và `Host based`
