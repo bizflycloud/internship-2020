@@ -23,11 +23,23 @@
   + __Ảo hóa lưu trữ (Storage virtualization):__ tổng hợp Physical storage từ nhiều thiết bị lưu trữ mạng vào 1 thiết bị lưu trữ được quản lí từ bảng điều khiển trung tâm.
   + __Ảo hóa máy chủ:__ Ảo hóa tài nguyên máy chủ (bao gồm số và danh tính của máy chủ vật lí, bộ xử lí, hệ điều hành)
 
-### Ưu điểm:
+### Mục tiêu của ảo hóa:
 - __Availbility:__ Các ứng dụng hoạt động liên tục giảm thiểu down time 
 - __Scalability:__ Thu hẹp hoặc mở rộng server dễ  dàng mà không làm gián đoạn ứng dụng
 - __Optimization__: dùng triệt để nguồn tài nguyên phần cứng.
 - __Management__: Khả năng quản lí tập trung.
+
+### Các thành phần của hệ thống ảo hóa
+- **Tài nguyên vật lí**
+- **Các phần mềm ảo hóa:** 
+   + Cung cấp sự truy cập cho mỗi máy ảo đến tài nguyên hệ thống
+   + Chịu trách nhiệm lập kế hoạch và phân chia tài nguyên vật lí cho các máy ảo.
+   + Cung cấp giao diện quản lí các máy ảo.
+- **Máy ảo**: 
+   + Miêu tả máy ảo (Lớp 3) và hệ điều hành ảo(lớp 4)
+   + Con người thao tác như đang thao tác trên một lớp phần cứng vật lí thực sự.
+
+ ![](https://github.com/khanhnt99/CCNA-LINUX-tips/blob/master/Untitled%20Diagram.png?raw=true)
 
 ### 2.2 Virtual Machine
 - `Virtual Machine` hay còn gọi là máy ảo là một môi trường hoạt động độc lập - phần mềm hoạt động cùng nhưng độc lập với hệ điều hành.
@@ -61,6 +73,8 @@
 
 ### 2.6 Paravirtualization
 
+- Là phương pháp thay vì mô phỏng 1 môi trường phần cứng hoàn chỉnh, phần mềm ảo hóa dồn các truy cập các hệ điều hành máy chủ vào tài nguyên vật lí cơ sở.
+
 ![](https://github.com/ImKifu/thuctapsinh/raw/master/HungNK/Basic_Linux_Command/Picture/aohoa4.png)
 
 - Trong `paravirtualization`, hypervisor sẽ cung cấp `hypercall interface`.
@@ -88,11 +102,19 @@
 ### 3.2 Các loại Hypervisor
 - Có 2 loại `hypervisor` là `Native(Bare metal)` và `Host based`
 #### 3.2.1 Native Hypervisor (Bare metal)
+- Các lớp chính:
+   + `Nền tảng phần cứng`: bao gồm thiết bị nhập xuất, thiết bị lưu trữ (HDD, RAM), CPU
+   + `Virtual Machine Monitor (Hypervisor)`
+   + `Các ứng dụng máy ảo`
+- Khi hệ điều hành truy xuất:
+  + `Hypervisor` mô phỏng phần cứng làm cho hệ điều hành tưởng mình đang sử dụng tài nguyên vật lí của hệ thống thật.
+  + `Hypervisor` liên lạc với trình điều khiển thiết bị.
 - Chạy trực tiếp trên phần cứng
 - Nằm giữa phần cứng và 1 hoặc nhiều hệ điều hành khách (Guest operating system).
 - Khởi động trước hệ điều hành và tương tác trực tiếp với Kernel.
 - Đem lại hiệu suất cao vì không có hệ điều hành chính nào cạnh tranh tài nguyên máy tính với nó.
 - Hệ thống chỉ dùng để chạy các máy ảo vì `hypervisor` luôn chạy ngầm bên dưới.
+
 
 ![](http://2.bp.blogspot.com/-eYHy7_Puc3c/Vpr1e3-lWwI/AAAAAAAAAEQ/vm5dCernuYo/s1600/hypervisor_detail.png)
 
@@ -103,6 +125,12 @@
 #### 3.2.2 Hosted Hypervisor 
 - 1 hypervisor dạng hosted được cài đặt trên 1 máy tính chủ (host computer) mà trong đó có 1 hệ điều hành được cài đặt sẵn.
 - Hypervisor chạy như một ứng dụng trên máy tính.
+- Hoạt động trên 4 lớp:
+  + `Nền tảng phần cứng`: thiết bị nhập xuất, thiết bị lưu trữ, CPU,..
+  + `Hệ điều hành Host`: liên lạc trực tiếp với phần cứng.
+  + `Hệ thống hypervisor`: Chạy trên nền tảng hệ điều hành Host, lấy tài nguyên mà dịch vụ do hệ điều hành cung cấp, thực hiện việc quản lí, phân chia trên các tài nguyên này.
+  + `Các máy ảo`: Sử dụng tài nguyên do hypervisor quản lí
+   
 
 ![](https://raw.githubusercontent.com/ImKifu/thuctapsinh/master/HungNK/Basic_Linux_Command/Picture/Hosted-Hypervisor-type-2.png)
 
