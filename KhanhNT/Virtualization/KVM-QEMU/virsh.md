@@ -1,74 +1,12 @@
-# Tool management VM
-
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Libvirt_support.svg/1280px-Libvirt_support.svg.png)
-
-![](https://i.ibb.co/MnzCpbs/Screenshot-from-2020-10-17-11-12-42.png)
-
-## 1. Libvirt 
-### 1.1 Giới thiệu
-- **Libvirt** là bộ các phần mềm cung cấp các thuận tiện để quản lí máy ảo và các chức năng của ảo hóa (ví dụ như chức năng quản lí lưu trữ và giao diện mạng).
-- Những phần mềm bao gồm: 
-  + Thư viện API
-  + Daemon(livirtd) 
-  + Các gói tiện ích giao diện dòng lệnh (virsh)
-- Mục đích:
- + Cung cấp một cách duy nhất để quản lí ảo hóa từ các nhà cung cấp và các loại Hypervisor khác nhau (không cần thiết phải học 1 tool mặc định cho từng Hypervisor).
-
-### 1.2 Các chức năng chính
-- **VM management - Quản trị các máy ảo:** 
-   + Quản lí vòng đời của các domain như `start`, `stop`, `pause`, `save`, `restore`, `migrate`.
-   + Các hoạt động `hotplug` cho nhiều loại thiết bị bao gồm `disk`. `network interface`, `memory`,...
-
-   + `Coldplug`: Disconnect or connect only when power off.
-   + `Hotplug`: Disconnect or connect while the system is up and running.
-
-- **Remote machine support:** 
-  + Tất cả các chức năng của libvirt có thể được truy cập trên nhiều máy chạy libvirt daemon(libvirtd)
-  + Hỗ trợ kết nối từ xa
-
-![](https://i.ibb.co/4jfLYGs/Screenshot-from-2020-10-17-11-16-30.png)
-
-- **Storage management:** 
-  + Bất kì host nào đang chạy libvirt daemon có thể được sử dụng để quản lí nhiều loại storage.
-  + Tạo file image với nhiều định dạng (qcow2, vmdk,raw,...)
-  + Mount NFS shares
-  + Liệt kê các phân vùng LVM, tạo nhóm phân vùng LVM mới, phân vùng ổ cứng.
-  
-- **Network interface management:**
-  + Bất kì host nào chạy libvirt daemon có thể sử 
-dụng để quản lí network vật lí và logic.
-  + Liệt kê các interface đang tồn tại, cấu hình tạo, xóa các interface, bridge, vlans, bond devices.
-
-- **Virtual NAT and Route based networking:**
-  + Quản lí và tạo các mạng ảo.
-  + Libvirt network sử dụng firewall để hoạt động như là router, cung cấp các máy ảo trong suốt quá trình truy cập tới mạng của host.
-
-
-## 2. Virt-manager tool
-### 2.1 Cài đặt:
-- `sudo apt-get install virt-manager`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## 3. Virtsh
-## 3.1. Giới thiệu
+##  Virtsh
+## 1. Giới thiệu
 - Là bộ công cụ để tương tác với **libvirtd(libvirt daemon)** có hỗ trợ quản lí KVM.
 - Phân biệt giữa **virt** và **virtsh**
-  + `virsh` là bộ công cụ tương tác `libvirtd` đi kèm sẵn khi cài đặt `libvirt-bin`, còn `virt** phải cài đặt riêng.
+  + `virsh` là bộ công cụ tương tác `libvirtd` đi kèm sẵn khi cài đặt `libvirt-bin`, còn `virt` phải cài đặt riêng.
   + `virsh` không tương tác trực tiếp với `libvirtd` để sử dụng tài nguyên mà chỉ có thể sử dụng tài nguyên mà `hypervisor` quản lí thông qua việc thực thi các file **xml**.
+  + `virsh` chỉ quản lí trên localhost.
 
-## 2.2 Sử dụng virsh
+## 2 Sử dụng virsh
 - Cấu trúc lệnh cơ bản:
   + `virsh [option]... <command> <domain> [ARG]...`
 - Hiện thông số cơ bản của node
@@ -166,6 +104,7 @@ Domain host created from host1.xml
 ```
 
 - Export thông tin máy ảo ra XML:
+  + `virsh dumpxml <VM_name> > /pathfile/file.xml`
 
 ```
 corgi@ubuntu:~$ sudo virsh dumpxml host > /tmp/host1.xml
@@ -181,15 +120,70 @@ corgi@ubuntu:~$ sudo virsh dumpxml host > /tmp/host1.xml
 |destroy|Đóng tất cả các ứng dụng và shutdown máy ảo|
 |reboot|Khởi động lại máy ảo|
 |autostart|Tự động bật máy ảo khi khởi động hệ thống|
+|domid|Hiển thị ID máy ảo|
+|domuuid|Hiển thị UUID máy ảo| 
+|dominfo|Hiển thị thông tin máy ảo|
+|suspend|Tạm dừng máy ảo|
+
+- Tip stop all máy ảo
+
+```
+for i in $(`sudo virsh list | grep running | awk '{print $2}'`) do
+    sudo virsh shutdown $i
+done
+```
+
+- Quản lí tài nguyên VM:
+
+|Câu lệnh|Mô tả|
+|--------|-----|
+|setmem|Set RAM cho máy ảo|
+|vcpuinfo|Hiển thị vCPU máy ảo|
+|attach-device|attach thiết bị vào máy ảo|
 
 - Lưu trạng thái hoạt động của máy ảo vào 1 file để có thể restore lại:
 
-  + `virsh save <vm_name> <vm_name_time>.state
+  + `virsh save <vm_name> <vm_name_time>.state`
+
+- Check VM Infomation
+  + `virsh dominfo <vm_name>`
+
+```
+root@ubuntu:~# virsh dominfo Ubuntu1
+setlocale: No such file or directory
+Id:             2
+Name:           Ubuntu1
+UUID:           d1ea3c36-55a8-418e-ad4a-8357411cb3bc
+OS Type:        hvm
+State:          running
+CPU(s):         1
+CPU time:       1543.6s
+Max memory:     1048576 KiB
+Used memory:    1048576 KiB
+Persistent:     yes
+Autostart:      disable
+Managed save:   no
+Security model: apparmor
+Security DOI:   0
+Security label: libvirt-d1ea3c36-55a8-418e-ad4a-8357411cb3bc (enforcing)
+```
+
+- Để console tới các máy ảo 
+  + `virsh console <VM_name>`
 
 
+```
+root@ubuntu:~# virsh console ubuntu16.04
+setlocale: No such file or directory
+Connected to domain ubuntu16.04
+Escape character is ^]
 
+Ubuntu 18.04.5 LTS ubuntu ttyS0
 
+ubuntu login: 
+Ubuntu 18.04.5 LTS ubuntu ttyS0
 
+```
 
 
 
@@ -201,6 +195,5 @@ corgi@ubuntu:~$ sudo virsh dumpxml host > /tmp/host1.xml
 
 __Docs__:
 - https://github.com/hocchudong/thuctap012017/blob/master/TamNT/Virtualization/docs/KVM/1.Tim_hieu_KVM.md
-
-
-
+- https://blog.cloud365.vn/linux/cheatsheet-virsh/
+- https://github.com/khanhnt99/thuctap012017/blob/master/XuanSon/Virtualization/Virtual%20Machine/KVM/Tool%20use%20KVM.md#2.4
