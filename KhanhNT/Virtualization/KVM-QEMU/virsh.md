@@ -173,9 +173,9 @@ Security label: libvirt-d1ea3c36-55a8-418e-ad4a-8357411cb3bc (enforcing)
 
 
 ```
-root@ubuntu:~# virsh console ubuntu16.04
+root@ubuntu:~# virsh console generic
 setlocale: No such file or directory
-Connected to domain ubuntu16.04
+Connected to domain generic
 Escape character is ^]
 
 Ubuntu 18.04.5 LTS ubuntu ttyS0
@@ -183,17 +183,26 @@ Ubuntu 18.04.5 LTS ubuntu ttyS0
 ubuntu login: 
 Ubuntu 18.04.5 LTS ubuntu ttyS0
 
+ubuntu login: root
+Password: 
+Last login: Sat Oct 24 02:06:49 UTC 2020 on ttyS0
+
+
+Welcome to Ubuntu 18.04.5 LTS (GNU/Linux 4.15.0-121-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Sat Oct 24 02:21:55 UTC 2020
+
+  System load: 0.29              Memory usage: 6%   Processes:       103
+  Usage of /:  51.7% of 1.96GB   Swap usage:   0%   Users logged in: 0
+
 ```
-
-
-
-
-
-
-
-
 
 __Docs__:
 - https://github.com/hocchudong/thuctap012017/blob/master/TamNT/Virtualization/docs/KVM/1.Tim_hieu_KVM.md
 - https://blog.cloud365.vn/linux/cheatsheet-virsh/
 - https://github.com/khanhnt99/thuctap012017/blob/master/XuanSon/Virtualization/Virtual%20Machine/KVM/Tool%20use%20KVM.md#2.4
+- https://computingforgeeks.com/customize-qcow2-raw-image-templates-with-virt-customize/
