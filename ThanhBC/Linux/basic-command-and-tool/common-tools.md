@@ -108,7 +108,8 @@ ps -f -U root -u root    (hiện thị tất cả các tiến trình)
 Lệnh lsof(list open files) là lệnh được sử dụng để liệt kê thông tin về các tệp được mở bởi các quy trình khác nhau. Trong hệ điều hành Linux, mọi thứ là một tập tin(ví dụ như: pipes, sockets, directories, devices,...). Lệnh lsof được phát triển và hỗ trợ bởi Victor A. Abell. Chương trình sẽ liệt kê những tệp đang mở và tiến trình nào đang sử dụng chúng.
 
 
-## <a name="3"> Lệnh Kill và cách sử dụng signalkill </a>Tác vụ (tasks) trong Linux được gọi là Processes (tiến trình). Mỗi process có ID Process duy nhất. Để xóa một tiến trình trong Linux, bạn sẽ dùng lệnh kill. Trong bài hướng dẫn này, chúng tôi sẽ chỉ bạn cách kill process Linux, để tăng cường kỹ năng sử dụng VPS của bạn.
+## <a name="3"> Lệnh Kill và cách sử dụng signalkill </a>
+Tác vụ (tasks) trong Linux được gọi là Processes (tiến trình). Mỗi process có ID Process duy nhất. Để xóa một tiến trình trong Linux, bạn sẽ dùng lệnh kill. Trong bài hướng dẫn này, chúng tôi sẽ chỉ bạn cách kill process Linux, để tăng cường kỹ năng sử dụng VPS của bạn.
 
 Kill Command Linux có thể quản lý tiến trình trong Linux:
 
