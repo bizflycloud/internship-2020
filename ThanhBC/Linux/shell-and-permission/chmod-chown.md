@@ -113,4 +113,20 @@ Sau khi tạo thì nó sẽ được sư dụng Umask để thay đôi quyền h
     - Quyền hạn sử dụng cho thư mục là 755.
 
 
+```
+The file type is one of the following characters:
+    -  regular file
+    b  block special file
+    c  character special file
+    C  high performance ("contiguous data") file
+    d  directory
+    D  door (Solaris 2.5 and up)
+    l  symbolic link
+    M  off-line ("migrated") file (Cray DMF)
+    n  network special file (HP-UX)
+    p  FIFO (named pipe)
+    P  port (Solaris 10 and up)
+    s  socket
+    ?  some other file type
+```
 
