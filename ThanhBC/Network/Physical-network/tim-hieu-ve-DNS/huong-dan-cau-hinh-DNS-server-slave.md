@@ -189,7 +189,7 @@ Thêm dong sau vào file.
 
 Kêt quả file sau khi thêm:
 
-![](anhdns/dns1-ip.png)
+![](anhdns/dns0-ip.png)
 
 –  Edit file /etc/resolv.conf,
 
@@ -268,12 +268,12 @@ ls /var/named/slaves/
 
 Thêm vào dòng 19:
 
-    DNS1="192.168.122.43"
-    DNS2="192.168.122.44"
+    Dns0="192.168.122.43"
+    Dns1="192.168.122.44"
 
 Sau khi thêm ta sẽ được file như sau
 
-![](anhdns/dns2-ip.png)
+![](anhdns/dns1-ip.png)
 
 Mở và chỉnh sửa file /etc/resolv.conf
 
@@ -324,7 +324,7 @@ Kiểm tra tiếp DNS Server Slave
 
 –  Kết quả trả về :
 
-![](anhdns/nslookup-dns2.png)
+![](anhdns/nslookup-dns1.png)
  
 
 Cấu hình máy con Client :
