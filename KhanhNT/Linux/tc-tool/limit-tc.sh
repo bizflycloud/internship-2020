@@ -1,58 +1,69 @@
 #!/bin/bash
+IF="ens3"
+echo "$IF"
+ifb="ifb3"
+echo "$ifb"
+lan="192.168.0."
+down="10000"
+up="10000"
+
 TC=$(which tc)
-interface=ens3
-download_limit=512kbit
-upload_limit=10mbit
-IP=192.168.0.10
-# Functions
-run_traffic_control(){
-    U32="$TC filter add dev $IF protocol ip parent 1:0 prio 1 u32"
 
-    #Use tc tool
-    $TC qdisc add dev $interface root handle 1: htb default 30 > /dev/null 2>$1
-    
-    # Limit Download
-    $TC class add dev $interface parent 1: classid 1:1 htb rate $download_limit
-    $U32 match ip dest $IP/32 flowid 1:1
+modprobe ifb numifb=1
+ip link add $ifb type ifb
+ip link set dev $ifb up
 
-    # limit upload
-    $TC class add dev $interface parent 1: classid 1:2 htb rate $upload_limit
-    $U32 match ip src $IP/32 flowid 1:2
-}
+## Limit incoming traffic
 
-stop_traffic_control(){
-    $TC qdisc del dev $interface root
-}
+### Clean interface
 
-show(){
-    $TC -s qdisc ls dev $interface
+run_traffic_control() 
+{
+      $TC qdisc del dev $IF handle ffff: ingress > /dev/null 2>&1
+      $TC qdisc del root dev $ifb > /dev/null 2>&1
+      $TC qdisc del root dev $IF > /dev/null 2>&1
+      
+      #$TC qdisc add dev $IF root handle 1: htb default 999
+      $TC qdisc add dev $IF handle ffff: ingress > /dev/null 2>&1
+      
+      ### Redirect ingress ens3 to egress ifb3
+      $TC filter add dev $IF parent ffff: protocol ip u32 match u32 0 0 action mirred egress redirect dev $ifb > /dev/null 2>&1
+      $TC qdisc add dev $ifb root handle 1: htb default 10 2>&1
+      $TC qdisc add dev $IF root handle 1: htb default 10 2>&1
+      
+      for i in $(seq 1 255); do
+	      # Limit Download
+	      #TC class add dev $ifb parent 1:1 classid 1:$i htb rate ${down}kbit	
+      	      $TC class add dev $IF parent 1:1 classid 1:$i htb rate ${down}kbit 2>&1	
+      	      $TC filter add dev $ifb protocol ip parent 1: prio 1 u32 match ip dst $lan$i/32 flowid 1:$i 2>&1
+      done
+} 
+
+stop_traffic_control()
+{
+	$TC qdisc del dev $IF root > /dev/null 2>&1
+	$TC qdisc del dev $IF parent ffff: > /dev/null 2>&1
+	$TC qdisc del dev $ifb root > /dev/null 2>&1
+	ip link del $ifb
 }
 
 case "$1" in
+	start)
+		echo -n "Starting bandwidth shaping "
+		run_traffic_control
+		echo "done start"
+		;;
+	
+	stop)
+		echo -n "Stoping bandwidth shaping "
+		stop_traffic_control
+		echo "done stop"
+		;;
 
-start)
+	*)
+		pwd=$(pwd)
+		echo "Usage: bash limit-tc.sh {start|stop}"
+		;;
+esac
 
-echo -n "Start traffic shaping: "
-run_traffic_control
-echo "done"
-;;
-
-stop)
-
-echo -n "stop traffic shaping"
-stop_traffic_control
-echo "done"
-;;
-
-show)
-show
-echo ""
-;;
-
-*)
-
-pwd=$(pwd)
-echo "Usage: shaping {start|stop|show}"
-;;
-
-esac exit 0
+exit 0
