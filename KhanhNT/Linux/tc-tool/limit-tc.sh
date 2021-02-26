@@ -4,8 +4,8 @@ echo "$IF"
 ifb="ifb3"
 echo "$ifb"
 lan="192.168.0."
-down="10000"
-up="10000"
+down="50000"
+up="5000"
 
 TC=$(which tc)
 
@@ -34,8 +34,13 @@ run_traffic_control()
       for i in $(seq 1 255); do
 	      # Limit Download
 	      #TC class add dev $ifb parent 1:1 classid 1:$i htb rate ${down}kbit	
-      	      $TC class add dev $IF parent 1:1 classid 1:$i htb rate ${down}kbit 2>&1	
-      	      $TC filter add dev $ifb protocol ip parent 1: prio 1 u32 match ip dst $lan$i/32 flowid 1:$i 2>&1
+      	      $TC class add dev $IF parent 1:1 classid 1:$i htb rate ${down}kbit > /dev/null 2>&1	
+      	      $TC filter add dev $IF protocol ip parent 1: prio 1 u32 match ip dst $lan$i/32 flowid 1:$i > /dev/null 2>&1
+
+	      # Limit Upload
+	      $TC class add dev $ifb parent 1:1 classid 1:$i htb rate ${up}kbit > /dev/null 2>&1
+	      $TC filter add dev $ifb protocol ip parent 1: prio 1 u32 match ip src $lan$i/32 flowid 1:$i > /dev/null 2>&1
+
       done
 } 
 
